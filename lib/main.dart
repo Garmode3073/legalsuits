@@ -1,6 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,48 +28,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  List colors = [Colors.red, Colors.blue, Colors.deepPurple, Colors.amber];
-
-  @override
-  void initState() {
-    Timer.periodic(Duration(milliseconds: 500), (timer) {
-      setState(() {
-        _counter++;
-        _counter %= 4;
-      });
-    });
-    super.initState();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  String data = "hello there";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colors[_counter % 4],
-      body: Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.3,
-          width: MediaQuery.of(context).size.width * 0.7,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white.withOpacity(0.1)),
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.blueAccent.withOpacity(0.2),
-                  Colors.white.withOpacity(0.45),
-                  Colors.blueAccent.withOpacity(0.45),
-                ]),
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-      ),
+    return Provider(
+      create: (context) => data,
+      builder: (context, child) => Scaffold(),
     );
   }
 }
