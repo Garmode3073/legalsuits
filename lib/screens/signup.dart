@@ -25,6 +25,7 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController attpass = TextEditingController(text: "");
   TextEditingController attpass2 = TextEditingController(text: "");
   bool client = true;
+  String cat = "";
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +169,7 @@ class _SignupPageState extends State<SignupPage> {
                             ispass: false,
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           TxtField(
                             controller: clipass,
@@ -177,7 +178,7 @@ class _SignupPageState extends State<SignupPage> {
                             ispass: true,
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           TxtField(
                             controller: clipass2,
@@ -194,205 +195,278 @@ class _SignupPageState extends State<SignupPage> {
                         ],
                       ),
                     ),
+                    //terms and condition
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 50),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Text(
+                              "By continuing you agree to our",
+                              style: tncnonclickable,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Terms of service",
+                                  style: tncclickable,
+                                ),
+                                Text(
+                                  " & ",
+                                  style: tncnonclickable,
+                                ),
+                                Text(
+                                  "Privacy Policy",
+                                  style: tncclickable,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ]
                 : [
-                      //appbar logo and skip option
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: g.height * 0.0392,
-                          right: g.width * 0.058,
-                          left: g.width * 0.058,
-                          bottom: g.height * 0.0692,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            TitleText(),
-                            Text(
-                              "Back",
-                              style: skip,
-                            ),
-                          ],
-                        ),
+                    //appbar logo and skip option
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: g.height * 0.0392,
+                        right: g.width * 0.058,
+                        left: g.width * 0.058,
+                        bottom: g.height * 0.0692,
                       ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          TitleText(),
+                          Text(
+                            "Back",
+                            style: skip,
+                          ),
+                        ],
+                      ),
+                    ),
 
-                      //welcome to sign up screen
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: g.width * 0.093),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  "Welcome",
-                                  style: wlcomeback,
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Sign up with ",
-                                  style: subwelcome,
-                                ),
-                                Text(
-                                  "Legal Suits",
-                                  style: lsblue,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      //client or Attorny
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: g.width * 0.173,
-                            vertical: g.height * 0.06),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              RawMaterialButton(
-                                onPressed: () {
-                                  setState(() {
-                                    FocusScope.of(context).unfocus();
-                                    client = true;
-                                  });
-                                },
-                                child: Text(
-                                  "Client",
-                                  style: client
-                                      ? signupselected
-                                      : signupsonselected,
-                                ),
-                              ),
-                              Container(
-                                height: g.height * 0.05,
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              RawMaterialButton(
-                                onPressed: () {
-                                  setState(() {
-                                    FocusScope.of(context).unfocus();
-                                    client = false;
-                                  });
-                                },
-                                child: Text(
-                                  "Attorney",
-                                  style: client
-                                      ? signupsonselected
-                                      : signupselected,
-                                ),
-                              ),
-                            ]),
-                      ),
-
-                      //attorney side
-                      //text fields to input email,attorney number, phone, username password and login button
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: g.width * 0.05),
-                        child: Column(
-                          children: [
-                            TxtField(
-                              controller: attusername,
-                              prefix: "Profile",
-                              hint: "Username",
-                              ispass: false,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            TxtField(
-                              controller: attnum,
-                              prefix: "Profile",
-                              hint: "Attorney Number",
-                              ispass: false,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            TxtField(
-                              controller: attphone,
-                              prefix: "Call",
-                              hint: "Contact Number",
-                              ispass: false,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            TxtField(
-                              controller: attemail,
-                              prefix: "Message",
-                              hint: "Email",
-                              ispass: false,
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            TxtField(
-                              controller: attpass,
-                              prefix: "Lock",
-                              hint: "Password",
-                              ispass: true,
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            TxtField(
-                              controller: attpass2,
-                              prefix: "Lock",
-                              hint: "Confirm Password",
-                              ispass: true,
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            AuthButton(
-                              buttonName: "Sign up",
-                            ),
-                          ],
-                        ),
-                      ),
-                    ] +
-                    [
-                      //terms and condition
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 50),
-                        child: Center(
-                          child: Column(
+                    //welcome to sign up screen
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: g.width * 0.093),
+                      child: Column(
+                        children: [
+                          Row(
                             children: [
                               Text(
-                                "By continuing you agree to our",
-                                style: tncnonclickable,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Terms of service",
-                                    style: tncclickable,
-                                  ),
-                                  Text(
-                                    " & ",
-                                    style: tncnonclickable,
-                                  ),
-                                  Text(
-                                    "Privacy Policy",
-                                    style: tncclickable,
-                                  ),
-                                ],
+                                "Welcome",
+                                style: wlcomeback,
                               ),
                             ],
                           ),
+                          Row(
+                            children: [
+                              Text(
+                                "Sign up with ",
+                                style: subwelcome,
+                              ),
+                              Text(
+                                "Legal Suits",
+                                style: lsblue,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    //client or Attorny
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: g.width * 0.173,
+                          vertical: g.height * 0.06),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            RawMaterialButton(
+                              onPressed: () {
+                                setState(() {
+                                  FocusScope.of(context).unfocus();
+                                  client = true;
+                                });
+                              },
+                              child: Text(
+                                "Client",
+                                style:
+                                    client ? signupselected : signupsonselected,
+                              ),
+                            ),
+                            Container(
+                              height: g.height * 0.05,
+                              width: 1,
+                              color: Colors.black,
+                            ),
+                            RawMaterialButton(
+                              onPressed: () {
+                                setState(() {
+                                  FocusScope.of(context).unfocus();
+                                  client = false;
+                                });
+                              },
+                              child: Text(
+                                "Attorney",
+                                style:
+                                    client ? signupsonselected : signupselected,
+                              ),
+                            ),
+                          ]),
+                    ),
+
+                    //attorney side
+                    //text fields to input email,attorney number, phone, username password and login button
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: g.width * 0.05),
+                      child: Column(
+                        children: [
+                          TxtField(
+                            controller: attusername,
+                            prefix: "Profile",
+                            hint: "Username",
+                            ispass: false,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TxtField(
+                            controller: attnum,
+                            prefix: "Work",
+                            hint: "Attorney Number",
+                            ispass: false,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+
+                          //select type of attorney
+                          Container(
+                            height: g.height * 0.05,
+                            width: g.width * 0.9,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: List.generate(
+                                  4,
+                                  (i) => Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        decoration: BoxDecoration(
+                                            color: cat == g.categories[i]
+                                                ? g.bluebg
+                                                : Colors.transparent,
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            border: Border.all(
+                                                color: cat == g.categories[i]
+                                                    ? Colors.transparent
+                                                    : Colors.black)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 4.0,
+                                          ),
+                                          child: RawMaterialButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                cat = g.categories[i];
+                                              });
+                                            },
+                                            child: Text(
+                                              g.categories[i],
+                                              style: cat == g.categories[i]
+                                                  ? catselected
+                                                  : catnotselected,
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TxtField(
+                            controller: attphone,
+                            prefix: "Call",
+                            hint: "Contact Number",
+                            ispass: false,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TxtField(
+                            controller: attemail,
+                            prefix: "Message",
+                            hint: "Email",
+                            ispass: false,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TxtField(
+                            controller: attpass,
+                            prefix: "Lock",
+                            hint: "Password",
+                            ispass: true,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TxtField(
+                            controller: attpass2,
+                            prefix: "Lock",
+                            hint: "Confirm Password",
+                            ispass: true,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          AuthButton(
+                            buttonName: "Sign up",
+                          ),
+                        ],
+                      ),
+                    ),
+                    //terms and condition
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 50),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Text(
+                              "By continuing you agree to our",
+                              style: tncnonclickable,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Terms of service",
+                                  style: tncclickable,
+                                ),
+                                Text(
+                                  " & ",
+                                  style: tncnonclickable,
+                                ),
+                                Text(
+                                  "Privacy Policy",
+                                  style: tncclickable,
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
+                  ],
           ),
         ),
       ),

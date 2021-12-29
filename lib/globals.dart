@@ -26,3 +26,11 @@ Color blackfont = Color(0xff1E1E1E);
 Color bluefont = Color(0xff295C7A);
 Color greyBorder = Color(0xffC4C4C4);
 Color bluefont2 = Color(0xff80ddeb);
+
+//attorney types
+List categories = [
+  'Criminal',
+  'Corporate',
+  'Civil',
+  'Cyber',
+];

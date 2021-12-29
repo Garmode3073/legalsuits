@@ -98,3 +98,15 @@ TextStyle signupsonselected = GoogleFonts.poppins(
   fontSize: 22,
   color: g.blackfont,
 );
+
+TextStyle catnotselected = GoogleFonts.poppins(
+  fontWeight: FontWeight.w500,
+  color: Colors.black,
+  fontSize: 10,
+);
+
+TextStyle catselected = GoogleFonts.poppins(
+  fontWeight: FontWeight.w500,
+  color: Colors.white,
+  fontSize: 12,
+);
