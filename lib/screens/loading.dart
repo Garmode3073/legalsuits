@@ -21,7 +21,7 @@ class _LoadingPageState extends State<LoadingPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(child: Container()),
-            SpinKitFoldingCube(
+            SpinKitCircle(
               color: g.primary,
               size: 100.0,
             ),
