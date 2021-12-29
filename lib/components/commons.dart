@@ -86,3 +86,15 @@ TextStyle tncclickable = GoogleFonts.poppins(
     decoration: TextDecoration.underline,
   ),
 );
+
+TextStyle signupselected = GoogleFonts.poppins(
+  fontWeight: FontWeight.w500,
+  fontSize: 22,
+  color: g.bluefont,
+);
+
+TextStyle signupsonselected = GoogleFonts.poppins(
+  fontWeight: FontWeight.w300,
+  fontSize: 22,
+  color: g.blackfont,
+);

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:legalsuits/globals.dart' as g;
 import 'package:legalsuits/screens/loading.dart';
 import 'package:legalsuits/screens/login.dart';
+import 'package:legalsuits/screens/signup.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Legal Suites',
             theme: ThemeData(primarySwatch: g.primary),
-            home: LoginPage(),
+            home: SignupPage(),
           );
         }
         return MaterialApp(
