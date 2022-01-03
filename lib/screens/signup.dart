@@ -58,9 +58,14 @@ class _SignupPageState extends State<SignupPage> {
                         textBaseline: TextBaseline.alphabetic,
                         children: [
                           TitleText(),
-                          Text(
-                            "Back",
-                            style: skip,
+                          RawMaterialButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              "Back",
+                              style: skip,
+                            ),
                           ),
                         ],
                       ),
@@ -430,6 +435,7 @@ class _SignupPageState extends State<SignupPage> {
                             height: 30,
                           ),
                           AuthButton(
+                            onPressed: () {},
                             buttonName: "Sign up",
                           ),
                         ],

@@ -32,7 +32,7 @@ dependencies:
   cloud_firestore: ^3.1.2
   string_validator: ^0.3.0
   flutter_spinkit: ^5.1.0
-  page_transition: ^2.0.4
+  page_transition: any
   google_fonts: ^2.1.0
   firebase_auth: ^3.3.1
   font_awesome_flutter: ^8.11.0

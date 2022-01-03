@@ -3,6 +3,8 @@ import 'package:legalsuits/components/authbutt.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/screens/signup.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key key}) : super(key: key);
@@ -106,6 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 30,
                     ),
                     AuthButton(
+                      onPressed: () {},
                       buttonName: "Login",
                     ),
                   ],
@@ -140,6 +143,17 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: g.width * 0.05),
                 child: AuthButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        child: SignupPage(),
+                        duration: Duration(milliseconds: 500),
+                        type: PageTransitionType.rightToLeftJoined,
+                        childCurrent: LoginPage(),
+                      ),
+                    );
+                  },
                   buttonName: "Sign up",
                 ),
               ),

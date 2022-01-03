@@ -4,8 +4,10 @@ import 'package:legalsuits/globals.dart' as g;
 
 //login signup button
 class AuthButton extends StatefulWidget {
-  const AuthButton({Key key, this.buttonName}) : super(key: key);
+  const AuthButton({Key key, this.buttonName, this.onPressed})
+      : super(key: key);
   final String buttonName;
+  final Function onPressed;
 
   @override
   _AuthButtonState createState() => _AuthButtonState();
@@ -18,7 +20,7 @@ class _AuthButtonState extends State<AuthButton> {
       children: [
         Expanded(
           child: RawMaterialButton(
-            onPressed: () {},
+            onPressed: widget.onPressed,
             child: Container(
                 height: g.height * 0.0824,
                 decoration: BoxDecoration(
