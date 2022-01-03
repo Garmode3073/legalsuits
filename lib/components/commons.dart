@@ -22,18 +22,43 @@ class TitleText extends StatelessWidget {
 }
 
 //TextStyles
-TextStyle skip = GoogleFonts.poppins(
-  textStyle: TextStyle(
-    fontWeight: FontWeight.w300,
-    fontSize: 18,
-    color: g.greyfont,
-  ),
+
+//martels
+TextStyle caseSubtitle = GoogleFonts.martel(
+  fontWeight: FontWeight.w400,
+  fontSize: 10,
+  color: g.blackfont2,
 );
 
-TextStyle wlcomeback = GoogleFonts.poppins(
+TextStyle caseMoreButton = GoogleFonts.martel(
+  fontWeight: FontWeight.w400,
+  fontSize: 10,
+  color: g.white,
+);
+
+TextStyle hint = GoogleFonts.martel(
+  fontWeight: FontWeight.w600,
+  fontSize: 18,
+  color: g.primary,
+);
+
+TextStyle buttonText = GoogleFonts.martel(
+  fontWeight: FontWeight.w900,
+  fontSize: 18,
+  color: g.white,
+);
+
+TextStyle casetitle = GoogleFonts.martel(
+  fontWeight: FontWeight.w900,
+  fontSize: 18,
+  color: g.blackfont2,
+);
+
+//robotos
+TextStyle altblack = GoogleFonts.roboto(
   textStyle: TextStyle(
     fontWeight: FontWeight.w400,
-    fontSize: 26,
+    fontSize: 16,
     color: g.blackfont,
   ),
 );
@@ -46,12 +71,27 @@ TextStyle subwelcome = GoogleFonts.roboto(
   ),
 );
 
-TextStyle lsblue = GoogleFonts.poppins(
+//poppins
+TextStyle tncnonclickable = GoogleFonts.poppins(
   textStyle: TextStyle(
-    fontWeight: FontWeight.w700,
-    fontSize: 18,
-    color: g.bluefont,
+    fontWeight: FontWeight.w300,
+    fontSize: 16,
+    color: g.blackfont,
   ),
+);
+
+TextStyle skip = GoogleFonts.poppins(
+  textStyle: TextStyle(
+    fontWeight: FontWeight.w300,
+    fontSize: 18,
+    color: g.greyfont,
+  ),
+);
+
+TextStyle signupsonselected = GoogleFonts.poppins(
+  fontWeight: FontWeight.w300,
+  fontSize: 22,
+  color: g.blackfont,
 );
 
 TextStyle altblue = GoogleFonts.poppins(
@@ -59,22 +99,6 @@ TextStyle altblue = GoogleFonts.poppins(
     fontWeight: FontWeight.w400,
     fontSize: 16,
     color: g.bluefont,
-  ),
-);
-
-TextStyle altblack = GoogleFonts.roboto(
-  textStyle: TextStyle(
-    fontWeight: FontWeight.w400,
-    fontSize: 16,
-    color: g.blackfont,
-  ),
-);
-
-TextStyle tncnonclickable = GoogleFonts.poppins(
-  textStyle: TextStyle(
-    fontWeight: FontWeight.w300,
-    fontSize: 16,
-    color: g.blackfont,
   ),
 );
 
@@ -87,16 +111,24 @@ TextStyle tncclickable = GoogleFonts.poppins(
   ),
 );
 
+TextStyle wlcomeback = GoogleFonts.poppins(
+  textStyle: TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 26,
+    color: g.blackfont,
+  ),
+);
+
 TextStyle signupselected = GoogleFonts.poppins(
   fontWeight: FontWeight.w500,
   fontSize: 22,
   color: g.bluefont,
 );
 
-TextStyle signupsonselected = GoogleFonts.poppins(
-  fontWeight: FontWeight.w300,
+TextStyle buttontext = GoogleFonts.poppins(
+  fontWeight: FontWeight.w500,
+  color: Colors.white,
   fontSize: 22,
-  color: g.blackfont,
 );
 
 TextStyle catnotselected = GoogleFonts.poppins(
@@ -109,4 +141,12 @@ TextStyle catselected = GoogleFonts.poppins(
   fontWeight: FontWeight.w500,
   color: Colors.white,
   fontSize: 12,
+);
+
+TextStyle lsblue = GoogleFonts.poppins(
+  textStyle: TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
+    color: g.bluefont,
+  ),
 );
