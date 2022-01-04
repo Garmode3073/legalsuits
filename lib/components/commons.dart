@@ -60,6 +60,24 @@ TextStyle back = GoogleFonts.martel(
   color: Colors.black.withOpacity(0.7),
 );
 
+TextStyle casesubject = GoogleFonts.martel(
+  fontWeight: FontWeight.w700,
+  fontSize: 16,
+  color: g.blackfont2,
+);
+
+TextStyle attname = GoogleFonts.martel(
+  fontWeight: FontWeight.w800,
+  fontSize: 15.43,
+  color: g.blackfont2,
+);
+
+TextStyle attdetails = GoogleFonts.martel(
+  fontWeight: FontWeight.w800,
+  fontSize: 12,
+  color: g.blackfont2.withOpacity(0.75),
+);
+
 TextStyle buttonText = GoogleFonts.martel(
   fontWeight: FontWeight.w900,
   fontSize: 18,
