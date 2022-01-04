@@ -104,3 +104,35 @@ class _SearchFieldState extends State<SearchField> {
     );
   }
 }
+
+//text field for forms of adding new cases etc.abstract
+class AddNewFormField extends StatefulWidget {
+  const AddNewFormField({Key key, this.hintText, this.lines}) : super(key: key);
+  final String hintText;
+  final int lines;
+
+  @override
+  _AddNewFormFieldState createState() => _AddNewFormFieldState();
+}
+
+class _AddNewFormFieldState extends State<AddNewFormField> {
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      minLines: widget.lines,
+      maxLines: widget.lines,
+      style: textaddcase,
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        hintStyle: hinttextaddcase,
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 0.5,
+            color: g.greyBorder,
+          ),
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+}

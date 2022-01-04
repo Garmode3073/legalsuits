@@ -42,7 +42,10 @@ class _AuthButtonState extends State<AuthButton> {
 
 //add new case, submit button etc
 class SubmitButton extends StatefulWidget {
-  const SubmitButton({Key key}) : super(key: key);
+  const SubmitButton({Key key, this.buttonName, this.onPressed})
+      : super(key: key);
+  final String buttonName;
+  final Function onPressed;
 
   @override
   _SubmitButtonState createState() => _SubmitButtonState();
@@ -59,7 +62,7 @@ class _SubmitButtonState extends State<SubmitButton> {
         bottom: 20.0,
       ),
       child: RawMaterialButton(
-        onPressed: () {},
+        onPressed: widget.onPressed,
         child: Container(
           decoration: BoxDecoration(
             color: g.primary,
@@ -71,7 +74,7 @@ class _SubmitButtonState extends State<SubmitButton> {
                 vertical: 15,
               ),
               child: Text(
-                'Add New Case',
+                widget.buttonName,
                 style: buttonText,
               ),
             ),

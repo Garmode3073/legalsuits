@@ -4,6 +4,8 @@ import 'package:legalsuits/components/cards.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/screens/client/newcase.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ClientHome extends StatefulWidget {
   const ClientHome({Key key}) : super(key: key);
@@ -52,10 +54,13 @@ class _ClientHomeState extends State<ClientHome> {
                 ],
               ),
             ),
+
+            //search field
             SearchField(),
             SizedBox(
               height: 15,
             ),
+            //List of all cases
             Expanded(
                 child: ListView(
               children: [
@@ -67,7 +72,19 @@ class _ClientHomeState extends State<ClientHome> {
                 CaseCard(),
               ],
             )),
-            SubmitButton(),
+            //Add new case button
+            SubmitButton(
+              buttonName: "Add New Case",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: NewCase(),
+                    type: PageTransitionType.fade,
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
