@@ -60,6 +60,18 @@ TextStyle back = GoogleFonts.martel(
   color: Colors.black.withOpacity(0.7),
 );
 
+TextStyle catAttPageunselected = GoogleFonts.martel(
+  fontWeight: FontWeight.w700,
+  fontSize: 12,
+  color: g.blackfont2,
+);
+
+TextStyle catAttPageuselected = GoogleFonts.martel(
+  fontWeight: FontWeight.w700,
+  fontSize: 12,
+  color: g.white,
+);
+
 TextStyle casesubject = GoogleFonts.martel(
   fontWeight: FontWeight.w700,
   fontSize: 16,
@@ -76,6 +88,18 @@ TextStyle attdetails = GoogleFonts.martel(
   fontWeight: FontWeight.w800,
   fontSize: 12,
   color: g.blackfont2.withOpacity(0.75),
+);
+
+TextStyle filtertext = GoogleFonts.martel(
+  fontWeight: FontWeight.w800,
+  fontSize: 15,
+  color: g.blackfont2,
+);
+
+TextStyle pagetitle = GoogleFonts.martel(
+  fontWeight: FontWeight.w800,
+  fontSize: 18,
+  color: g.blackfont2,
 );
 
 TextStyle buttonText = GoogleFonts.martel(

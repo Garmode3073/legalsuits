@@ -119,7 +119,7 @@ class _AttorneyCardState extends State<AttorneyCard> {
         height: g.height * 0.16,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
               blurRadius: 15,
@@ -232,7 +232,7 @@ class _AttorneyCardState extends State<AttorneyCard> {
                         decoration: BoxDecoration(
                           color: g.primary,
                           borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(16),
+                            bottomRight: Radius.circular(18),
                           ),
                         ),
                         child: RawMaterialButton(

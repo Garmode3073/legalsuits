@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/screens/client/attorney.dart';
 import 'package:legalsuits/screens/client/home.dart';
 import 'package:legalsuits/screens/client/newcase.dart';
 import 'package:legalsuits/screens/loading.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Legal Suites',
             theme: ThemeData(primarySwatch: g.primary),
-            home: ClientHome(),
+            home: AllAttorneys(),
           );
         }
         return MaterialApp(

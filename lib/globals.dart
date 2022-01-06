@@ -37,3 +37,11 @@ List categories = [
   'Civil',
   'Cyber',
 ];
+
+//filters for attorneys
+List filters = [
+  'Low to High',
+  'High to Low',
+  'LLB',
+  'LLM',
+];

@@ -54,7 +54,33 @@ class _ClientHomeState extends State<ClientHome> {
                 ],
               ),
             ),
-
+            //back button and icon
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+              child: RawMaterialButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.black.withOpacity(0.7),
+                    ),
+                    SizedBox(
+                      width: g.width * 0.045,
+                    ),
+                    Text(
+                      "Back",
+                      style: back,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: g.height * 0.0392,
+            ),
             //search field
             SearchField(),
             SizedBox(
