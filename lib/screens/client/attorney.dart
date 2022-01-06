@@ -255,7 +255,7 @@ class _AllAttorneysState extends State<AllAttorneys> {
                                                 children: [
                                                   Expanded(child: Container()),
                                                   Container(
-                                                    height: 26,
+                                                    height: 32,
                                                     width: 100,
                                                     decoration: BoxDecoration(
                                                       color: g.primary,
@@ -273,7 +273,8 @@ class _AllAttorneysState extends State<AllAttorneys> {
                                                       child: Center(
                                                         child: Text(
                                                           "Apply",
-                                                          style: caseMoreButton,
+                                                          style:
+                                                              caseMoreButton2,
                                                         ),
                                                       ),
                                                     ),

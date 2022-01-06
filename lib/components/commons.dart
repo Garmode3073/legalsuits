@@ -36,6 +36,12 @@ TextStyle caseMoreButton = GoogleFonts.martel(
   color: g.white,
 );
 
+TextStyle caseMoreButton2 = GoogleFonts.martel(
+  fontWeight: FontWeight.w800,
+  fontSize: 15,
+  color: g.white,
+);
+
 TextStyle hinttextaddcase = GoogleFonts.martel(
   fontWeight: FontWeight.w400,
   fontSize: 18,
