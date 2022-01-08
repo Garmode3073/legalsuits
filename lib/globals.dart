@@ -20,6 +20,7 @@ Map<int, Color> color = {
 //colors
 Color primary = MaterialColor(0xffD39B2D, color);
 Color bluebg = Color(0xff295C7A);
+Color orangebg = Color(0xffE1BA6F);
 Color greyBG = Color(0xffF5F5F5);
 Color greyfont = Color(0xff939393);
 Color greyfont2 = Color(0xff858585);

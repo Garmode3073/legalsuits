@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Legal Suites',
             theme: ThemeData(primarySwatch: g.primary),
-            home: AllAttorneys(),
+            home: LoginPage(),
           );
         }
         return MaterialApp(
