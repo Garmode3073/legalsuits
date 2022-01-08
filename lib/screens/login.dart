@@ -3,6 +3,7 @@ import 'package:legalsuits/components/authbutt.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/screens/client/attorney.dart';
 import 'package:legalsuits/screens/signup.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -47,9 +48,23 @@ class _LoginPageState extends State<LoginPage> {
                   textBaseline: TextBaseline.alphabetic,
                   children: [
                     TitleText(),
-                    Text(
-                      "Skip",
-                      style: skip,
+                    Container(
+                      width: 40,
+                      child: RawMaterialButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              child: AllAttorneys(),
+                              type: PageTransitionType.fade,
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Skip",
+                          style: skip,
+                        ),
+                      ),
                     ),
                   ],
                 ),

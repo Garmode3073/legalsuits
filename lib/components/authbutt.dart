@@ -84,3 +84,32 @@ class _SubmitButtonState extends State<SubmitButton> {
     );
   }
 }
+
+//attorney page related buttons
+class AttorneyButton1 extends StatelessWidget {
+  const AttorneyButton1({Key key, this.buttonname, this.onpressed})
+      : super(key: key);
+  final String buttonname;
+  final Function onpressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onpressed,
+      child: Container(
+        height: g.height * 0.07,
+        width: g.width * 0.399,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: g.orangebg,
+        ),
+        child: Center(
+          child: Text(
+            buttonname,
+            style: buttonText2,
+          ),
+        ),
+      ),
+    );
+  }
+}

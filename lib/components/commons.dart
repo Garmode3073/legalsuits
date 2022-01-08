@@ -108,9 +108,9 @@ TextStyle pagetitle = GoogleFonts.martel(
   color: g.blackfont2,
 );
 
-TextStyle buttonText = GoogleFonts.martel(
+TextStyle buttonText2 = GoogleFonts.martel(
   fontWeight: FontWeight.w900,
-  fontSize: 18,
+  fontSize: 12,
   color: g.white,
 );
 
@@ -118,6 +118,12 @@ TextStyle casetitle = GoogleFonts.martel(
   fontWeight: FontWeight.w900,
   fontSize: 18,
   color: g.blackfont2,
+);
+
+TextStyle buttonText = GoogleFonts.martel(
+  fontWeight: FontWeight.w900,
+  fontSize: 18,
+  color: g.white,
 );
 
 //robotos
