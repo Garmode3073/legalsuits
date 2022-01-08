@@ -7,7 +7,8 @@ import 'package:legalsuits/screens/client/fullcase.dart';
 import 'package:page_transition/page_transition.dart';
 
 class CaseCard extends StatefulWidget {
-  const CaseCard({Key key}) : super(key: key);
+  const CaseCard({Key key, this.onPressed}) : super(key: key);
+  final Function onPressed;
 
   @override
   _CaseCardState createState() => _CaseCardState();
@@ -37,7 +38,7 @@ class _CaseCardState extends State<CaseCard> {
               ],
             ),
             child: RawMaterialButton(
-              onPressed: () {},
+              onPressed: widget.onPressed,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -72,15 +73,7 @@ class _CaseCardState extends State<CaseCard> {
                           ),
                         ),
                         child: RawMaterialButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                child: FullCase(),
-                                type: PageTransitionType.fade,
-                              ),
-                            );
-                          },
+                          onPressed: widget.onPressed,
                           child: Center(
                             child: Text("More", style: caseMoreButton),
                           ),

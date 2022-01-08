@@ -46,3 +46,9 @@ List filters = [
   'LLB',
   'LLM',
 ];
+
+//filters for listed cases
+List filters2 = [
+  'Newly Added to Old',
+  'High to Low',
+];

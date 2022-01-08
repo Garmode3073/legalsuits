@@ -4,6 +4,7 @@ import 'package:legalsuits/components/cards.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/screens/client/fullcase.dart';
 import 'package:legalsuits/screens/client/newcase.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -91,11 +92,61 @@ class _ClientHomeState extends State<ClientHome> {
                 child: ListView(
               children: [
                 CaseCard(),
-                CaseCard(),
-                CaseCard(),
-                CaseCard(),
-                CaseCard(),
-                CaseCard(),
+                CaseCard(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        child: FullCase(),
+                        type: PageTransitionType.fade,
+                      ),
+                    );
+                  },
+                ),
+                CaseCard(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        child: FullCase(),
+                        type: PageTransitionType.fade,
+                      ),
+                    );
+                  },
+                ),
+                CaseCard(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        child: FullCase(),
+                        type: PageTransitionType.fade,
+                      ),
+                    );
+                  },
+                ),
+                CaseCard(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        child: FullCase(),
+                        type: PageTransitionType.fade,
+                      ),
+                    );
+                  },
+                ),
+                CaseCard(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        child: FullCase(),
+                        type: PageTransitionType.fade,
+                      ),
+                    );
+                  },
+                ),
               ],
             )),
             //Add new case button
