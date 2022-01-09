@@ -91,7 +91,17 @@ class _ClientHomeState extends State<ClientHome> {
             Expanded(
                 child: ListView(
               children: [
-                CaseCard(),
+                CaseCard(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        child: FullCase(),
+                        type: PageTransitionType.fade,
+                      ),
+                    );
+                  },
+                ),
                 CaseCard(
                   onPressed: () {
                     Navigator.push(

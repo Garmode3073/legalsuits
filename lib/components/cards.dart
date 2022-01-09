@@ -94,6 +94,110 @@ class _CaseCardState extends State<CaseCard> {
   }
 }
 
+class CaseCard2 extends StatefulWidget {
+  const CaseCard2({Key key, this.onPressed}) : super(key: key);
+  final Function onPressed;
+
+  @override
+  _CaseCard2State createState() => _CaseCard2State();
+}
+
+class _CaseCard2State extends State<CaseCard2> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+            left: g.width * 0.077,
+            right: g.width * 0.077,
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 15,
+                  offset: Offset(0, 0),
+                  color: g.blackfont2.withOpacity(0.1),
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: RawMaterialButton(
+              onPressed: widget.onPressed,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 15, right: 15, top: 21, bottom: 4.5),
+                    child: Text(
+                      "Case Title",
+                      style: casetitle,
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.5),
+                    child: Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et.",
+                      style: caseSubtitle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 21,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: g.primary,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                          ),
+                        ),
+                        child: RawMaterialButton(
+                          onPressed: widget.onPressed,
+                          child: Center(
+                            child: Text("Interested", style: caseMoreButton),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 21,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: g.primary,
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
+                        child: RawMaterialButton(
+                          onPressed: widget.onPressed,
+                          child: Center(
+                            child: Text("More", style: caseMoreButton),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: g.height * 0.0318,
+        ),
+      ],
+    );
+  }
+}
+
 class AttorneyCard extends StatefulWidget {
   const AttorneyCard({Key key}) : super(key: key);
 
