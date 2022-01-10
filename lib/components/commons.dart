@@ -191,6 +191,12 @@ TextStyle wlcomeback = GoogleFonts.poppins(
   ),
 );
 
+TextStyle pagetitle2 = GoogleFonts.poppins(
+  fontWeight: FontWeight.w400,
+  fontSize: 22,
+  color: g.blackfont,
+);
+
 TextStyle signupselected = GoogleFonts.poppins(
   fontWeight: FontWeight.w500,
   fontSize: 22,

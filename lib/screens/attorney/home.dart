@@ -4,6 +4,8 @@ import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/globals.dart' as g;
 import 'package:legalsuits/screens/attorney/contact.dart';
 import 'package:legalsuits/screens/attorney/listcases.dart';
+import 'package:legalsuits/screens/attorney/profile.dart';
+import 'package:page_transition/page_transition.dart';
 
 class AttorneyHome extends StatefulWidget {
   const AttorneyHome({Key key}) : super(key: key);
@@ -76,7 +78,14 @@ class _AttorneyHomeState extends State<AttorneyHome> {
             bottom: 6,
             right: 47,
             child: RawMaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      child: MyProfileAttorney(),
+                      type: PageTransitionType.fade),
+                );
+              },
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
