@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     TxtField(
                       controller: email,
                       prefix: "Profile",
-                      hint: "Email or Phone",
+                      hint: "Email",
                       ispass: false,
                     ),
                     SizedBox(
