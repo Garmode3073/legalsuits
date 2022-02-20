@@ -3,8 +3,12 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 import 'dart:developer' as developer;
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:legalsuits/models/user.dart';
 import 'package:legalsuits/screens/client/home.dart';
 import 'package:legalsuits/screens/nonet.dart';
+import 'package:legalsuits/services/auth.dart';
+import 'package:legalsuits/services/wrapper.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -64,6 +68,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return _connectionStatus == ConnectivityResult.none
         ? NoNetwork()
-        : ClientHome();
+        : StreamProvider<UserinApp>.value(
+            value: AuthServices().userInApp,
+            initialData: null,
+            child: Wrapper(),
+          );
   }
 }

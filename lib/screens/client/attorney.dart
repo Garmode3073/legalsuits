@@ -56,13 +56,15 @@ class _AllAttorneysState extends State<AllAttorneys> {
                     ),
                     child: RawMaterialButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            child: ClientHome(),
-                            type: PageTransitionType.fade,
-                          ),
-                        );
+                        g.user == null
+                            ? Navigator.pop(context)
+                            : Navigator.push(
+                                context,
+                                PageTransition(
+                                  child: ClientHome(),
+                                  type: PageTransitionType.fade,
+                                ),
+                              );
                       },
                     ),
                   ),
