@@ -15,8 +15,8 @@ class Case {
     this.dateTime = map["dateTime"];
   }
 
-  Map tomap() {
-    Map map = {
+  Map<String, dynamic> tomap() {
+    Map<String, dynamic> map = {
       "caseId": this.caseid,
       "caseTitle": this.caseTitle,
       "caseSubject": this.caseSubject,

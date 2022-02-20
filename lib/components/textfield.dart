@@ -6,11 +6,17 @@ import 'package:legalsuits/globals.dart' as g;
 //logins and signup textfields
 class TxtField extends StatefulWidget {
   const TxtField(
-      {Key key, this.controller, this.prefix, this.hint, this.ispass})
+      {Key key,
+      this.controller,
+      this.prefix,
+      this.hint,
+      this.ispass,
+      this.validate})
       : super(key: key);
   final TextEditingController controller;
   final String prefix, hint;
   final bool ispass;
+  final Function validate;
 
   @override
   _TxtFieldState createState() => _TxtFieldState();
@@ -21,6 +27,7 @@ class _TxtFieldState extends State<TxtField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validate,
       controller: widget.controller,
       obscureText: widget.ispass ? obs : false,
       decoration: InputDecoration(

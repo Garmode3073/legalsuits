@@ -24,6 +24,8 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController attemail = TextEditingController(text: "");
   TextEditingController attpass = TextEditingController(text: "");
   TextEditingController attpass2 = TextEditingController(text: "");
+  final _clientkey = GlobalKey<FormState>();
+  final _attorneykey = GlobalKey<FormState>();
   bool client = true;
   String cat = "";
 
@@ -147,57 +149,60 @@ class _SignupPageState extends State<SignupPage> {
                     //text fields to input email,phone, username password and login button
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: g.width * 0.05),
-                      child: Column(
-                        children: [
-                          TxtField(
-                            controller: cliusername,
-                            prefix: "Profile",
-                            hint: "Username",
-                            ispass: false,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: cliphone,
-                            prefix: "Call",
-                            hint: "Contact Number",
-                            ispass: false,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: cliemail,
-                            prefix: "Message",
-                            hint: "Email",
-                            ispass: false,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: clipass,
-                            prefix: "Lock",
-                            hint: "Password",
-                            ispass: true,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: clipass2,
-                            prefix: "Lock",
-                            hint: "Confirm Password",
-                            ispass: true,
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          AuthButton(
-                            buttonName: "Sign up",
-                          ),
-                        ],
+                      child: Form(
+                        key: _clientkey,
+                        child: Column(
+                          children: [
+                            TxtField(
+                              controller: cliusername,
+                              prefix: "Profile",
+                              hint: "Username",
+                              ispass: false,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: cliphone,
+                              prefix: "Call",
+                              hint: "Contact Number",
+                              ispass: false,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: cliemail,
+                              prefix: "Message",
+                              hint: "Email",
+                              ispass: false,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: clipass,
+                              prefix: "Lock",
+                              hint: "Password",
+                              ispass: true,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: clipass2,
+                              prefix: "Lock",
+                              hint: "Confirm Password",
+                              ispass: true,
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            AuthButton(
+                              buttonName: "Sign up",
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     //terms and condition
@@ -336,114 +341,117 @@ class _SignupPageState extends State<SignupPage> {
                     //text fields to input email,attorney number, phone, username password and login button
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: g.width * 0.05),
-                      child: Column(
-                        children: [
-                          TxtField(
-                            controller: attusername,
-                            prefix: "Profile",
-                            hint: "Username",
-                            ispass: false,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: attnum,
-                            prefix: "Work",
-                            hint: "Attorney Number",
-                            ispass: false,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                      child: Form(
+                        key: _attorneykey,
+                        child: Column(
+                          children: [
+                            TxtField(
+                              controller: attusername,
+                              prefix: "Profile",
+                              hint: "Username",
+                              ispass: false,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: attnum,
+                              prefix: "Work",
+                              hint: "Attorney Number",
+                              ispass: false,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
 
-                          //select type of attorney
-                          Container(
-                            height: g.height * 0.05,
-                            width: g.width * 0.9,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: List.generate(
-                                  4,
-                                  (i) => Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        decoration: BoxDecoration(
-                                            color: cat == g.categories[i]
-                                                ? g.bluebg
-                                                : Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            border: Border.all(
-                                                color: cat == g.categories[i]
-                                                    ? Colors.transparent
-                                                    : Colors.black)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 4.0,
-                                          ),
-                                          child: RawMaterialButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                cat = g.categories[i];
-                                              });
-                                            },
-                                            child: Text(
-                                              g.categories[i],
-                                              style: cat == g.categories[i]
-                                                  ? catselected
-                                                  : catnotselected,
+                            //select type of attorney
+                            Container(
+                              height: g.height * 0.05,
+                              width: g.width * 0.9,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: List.generate(
+                                    4,
+                                    (i) => Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          decoration: BoxDecoration(
+                                              color: cat == g.categories[i]
+                                                  ? g.bluebg
+                                                  : Colors.transparent,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              border: Border.all(
+                                                  color: cat == g.categories[i]
+                                                      ? Colors.transparent
+                                                      : Colors.black)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 4.0,
+                                            ),
+                                            child: RawMaterialButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  cat = g.categories[i];
+                                                });
+                                              },
+                                              child: Text(
+                                                g.categories[i],
+                                                style: cat == g.categories[i]
+                                                    ? catselected
+                                                    : catnotselected,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      )),
+                                        )),
+                              ),
                             ),
-                          ),
 
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: attphone,
-                            prefix: "Call",
-                            hint: "Contact Number",
-                            ispass: false,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: attemail,
-                            prefix: "Message",
-                            hint: "Email",
-                            ispass: false,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: attpass,
-                            prefix: "Lock",
-                            hint: "Password",
-                            ispass: true,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TxtField(
-                            controller: attpass2,
-                            prefix: "Lock",
-                            hint: "Confirm Password",
-                            ispass: true,
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          AuthButton(
-                            onPressed: () {},
-                            buttonName: "Sign up",
-                          ),
-                        ],
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: attphone,
+                              prefix: "Call",
+                              hint: "Contact Number",
+                              ispass: false,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: attemail,
+                              prefix: "Message",
+                              hint: "Email",
+                              ispass: false,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: attpass,
+                              prefix: "Lock",
+                              hint: "Password",
+                              ispass: true,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TxtField(
+                              controller: attpass2,
+                              prefix: "Lock",
+                              hint: "Confirm Password",
+                              ispass: true,
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            AuthButton(
+                              onPressed: () {},
+                              buttonName: "Sign up",
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     //terms and condition

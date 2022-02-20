@@ -9,8 +9,8 @@ class Client {
     this.phoneno = map["phoneno"];
   }
 
-  Map tomap() {
-    Map map = {
+  Map<String, dynamic> tomap() {
+    Map<String, dynamic> map = {
       "uid": this.uid,
       "username": this.username,
       "phoneno": this.phoneno,

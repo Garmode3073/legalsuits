@@ -9,8 +9,8 @@ class UserinApp {
     this.password = map["password"];
   }
 
-  Map tomap() {
-    Map map = {
+  Map<String, dynamic> tomap() {
+    Map<String, dynamic> map = {
       "uid": this.uid,
       "email": this.email,
       "password": this.password,

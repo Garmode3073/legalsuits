@@ -5,6 +5,7 @@ import 'package:legalsuits/screens/client/home.dart';
 import 'package:legalsuits/screens/loading.dart';
 import 'package:legalsuits/screens/nonet.dart';
 import 'package:legalsuits/services/connect.dart';
+import 'package:legalsuits/services/wrapper.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Legal Suites',
             theme: ThemeData(primarySwatch: g.primary),
-            home: MainPage(),
+            home: MainPage(
+              child: Wrapper(),
+            ),
           );
         }
         return MaterialApp(

@@ -19,8 +19,8 @@ class Attorney {
     this.casePortfolio = map["casePortfolio"];
   }
 
-  Map tomap() {
-    Map map = {
+  Map<String, dynamic> tomap() {
+    Map<String, dynamic> map = {
       "uid": this.uid,
       "username": this.username,
       "phoneno": this.phoneNo,

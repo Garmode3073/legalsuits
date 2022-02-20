@@ -11,7 +11,8 @@ import 'package:legalsuits/services/wrapper.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key key}) : super(key: key);
+  const MainPage({Key key, this.child}) : super(key: key);
+  final Widget child;
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -71,7 +72,7 @@ class _MainPageState extends State<MainPage> {
         : StreamProvider<UserinApp>.value(
             value: AuthServices().userInApp,
             initialData: null,
-            child: Wrapper(),
+            child: widget.child,
           );
   }
 }

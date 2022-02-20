@@ -31,8 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: ListView(
             children: [
               //appbar logo and skip option
               Padding(
@@ -98,7 +97,9 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-
+              SizedBox(
+                height: 20,
+              ),
               //text fields to input email,phone password and login button
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: g.width * 0.05),

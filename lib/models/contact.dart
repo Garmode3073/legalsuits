@@ -15,8 +15,8 @@ class Contact {
     this.dateTime = map["dateTime"];
   }
 
-  Map tomap() {
-    Map map = {
+  Map<String, dynamic> tomap() {
+    Map<String, dynamic> map = {
       "attorneyid": this.attorneyid,
       "email": this.email,
       "title": this.title,
