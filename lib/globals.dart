@@ -1,7 +1,9 @@
 //measurements
 import 'package:flutter/material.dart';
+import 'package:legalsuits/models/user.dart';
 
 double width, height;
+UserinApp user;
 
 //color swatch
 Map<int, Color> color = {

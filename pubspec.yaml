@@ -39,6 +39,7 @@ dependencies:
   google_sign_in: "^4.5.1"
   firebase_storage: ^10.2.3
   file_picker: ^4.2.7
+  connectivity_plus: ^1.0.8
 
 dev_dependencies:
   flutter_test:
