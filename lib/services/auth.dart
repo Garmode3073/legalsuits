@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:legalsuits/models/user.dart';
 import 'package:legalsuits/globals.dart' as g;
 
@@ -18,18 +19,34 @@ class AuthServices {
   }
 
   //register
-  Future<UserinApp> register(String email, String password) async {
-    var user = await _auth.createUserWithEmailAndPassword(
-        email: email, password: password);
+  Future register(String email, String password) async {
+    var user;
+    try {
+      user = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+    } on PlatformException catch (err) {
+      return err.message;
+    } catch (e) {
+      return e.message;
+    }
+
     g.user = UserinApp.fromMap(
         {"uid": user.user.uid, "email": email, "password": ""});
     return g.user;
   }
 
   //sign in
-  Future<UserinApp> signIn(String email, String password) async {
-    var user = await _auth.signInWithEmailAndPassword(
-        email: email, password: password);
+  Future signIn(String email, String password) async {
+    var user;
+    try {
+      user = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on PlatformException catch (err) {
+      return err.message;
+    } catch (e) {
+      return e.message;
+    }
+
     g.user = UserinApp.fromMap(
         {"uid": user.user.uid, "email": email, "password": ""});
     return g.user;

@@ -7,6 +7,8 @@ class Attorney {
   int ratePh;
   String casePriceSheet;
   String casePortfolio;
+  bool llb;
+  bool llm;
 
   Attorney.fromMap(Map map) {
     this.uid = map["uid"];
@@ -15,20 +17,20 @@ class Attorney {
     this.attorneyNo = map["attorneyNo"];
     this.category = map["category"];
     this.ratePh = map["ratePh"];
-    this.casePriceSheet = map["casePriceSheet"];
-    this.casePortfolio = map["casePortfolio"];
+    this.llb = map["llb"];
+    this.llm = map["llm"];
   }
 
   Map<String, dynamic> tomap() {
     Map<String, dynamic> map = {
       "uid": this.uid,
       "username": this.username,
-      "phoneno": this.phoneNo,
+      "phoneNo": this.phoneNo,
       "attorneyNo": this.attorneyNo,
       "category": this.category,
       "ratePh": this.ratePh,
-      "casePriceSheet": this.casePriceSheet,
-      "casePortfolio": this.casePortfolio,
+      "llb": this.llb,
+      "llm": this.llm,
     };
     return map;
   }

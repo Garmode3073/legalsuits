@@ -1,12 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:legalsuits/components/authbutt.dart';
 import 'package:legalsuits/components/cards.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/images.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
 import 'package:legalsuits/screens/client/home.dart';
+import 'package:legalsuits/services/auth.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AllAttorneys extends StatefulWidget {
@@ -44,7 +46,12 @@ class _AllAttorneysState extends State<AllAttorneys> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 textBaseline: TextBaseline.alphabetic,
                 children: [
-                  TitleText(),
+                  RawMaterialButton(
+                    child: TitleText(),
+                    onPressed: () {
+                      AuthServices().signout();
+                    },
+                  ),
                   Container(
                     width: g.width * 0.1,
                     height: g.height * 0.05,
