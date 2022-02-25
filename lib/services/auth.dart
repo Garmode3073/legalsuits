@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:legalsuits/models/user.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/services/dbser.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -12,8 +13,16 @@ class AuthServices {
       if (event == null) {
         return null;
       }
-      UserinApp user = UserinApp.fromMap(
-          {"uid": event.uid, "email": event.email, "password": ""});
+      UserinApp user = UserinApp.fromMap({
+        "uid": event.uid,
+        "email": event.email,
+        "password": "",
+      });
+      DBServices().getType(event.uid).then((value) {
+        user.type = value;
+      });
+      print(user.type);
+
       return user;
     });
   }

@@ -1,11 +1,15 @@
 //measurements
 import 'package:flutter/material.dart';
+import 'package:legalsuits/models/attorney.dart';
 import 'package:legalsuits/models/user.dart';
+import 'package:legalsuits/models/client.dart';
 
 double width, height;
 UserinApp user;
+String type;
+Client client;
+Attorney attorney;
 
-//color swatch
 Map<int, Color> color = {
   50: Color.fromRGBO(211, 155, 45, .1),
   100: Color.fromRGBO(211, 155, 45, .2),
