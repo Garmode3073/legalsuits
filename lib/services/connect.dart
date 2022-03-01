@@ -69,10 +69,6 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return _connectionStatus == ConnectivityResult.none
         ? NoNetwork()
-        : StreamProvider<UserinApp>.value(
-            value: AuthServices().userInApp,
-            initialData: null,
-            child: widget.child,
-          );
+        : widget.child;
   }
 }

@@ -21,7 +21,6 @@ class AuthServices {
       DBServices().getType(event.uid).then((value) {
         user.type = value;
       });
-      print(user.type);
 
       return user;
     });

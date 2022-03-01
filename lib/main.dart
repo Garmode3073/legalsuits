@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:legalsuits/globals.dart' as g;
-import 'package:legalsuits/screens/client/attorney.dart';
-import 'package:legalsuits/screens/client/home.dart';
+import 'package:legalsuits/models/user.dart';
 import 'package:legalsuits/screens/loading.dart';
-import 'package:legalsuits/screens/nonet.dart';
+import 'package:legalsuits/services/auth.dart';
 import 'package:legalsuits/services/connect.dart';
 import 'package:legalsuits/services/wrapper.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,8 +26,12 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Legal Suites',
             theme: ThemeData(primarySwatch: g.primary),
-            home: MainPage(
-              child: Wrapper(),
+            home: StreamProvider<UserinApp>.value(
+              value: AuthServices().userInApp,
+              initialData: null,
+              child: MainPage(
+                child: Wrapper(),
+              ),
             ),
           );
         }

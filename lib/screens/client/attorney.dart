@@ -8,7 +8,9 @@ import 'package:legalsuits/components/images.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
 import 'package:legalsuits/screens/client/home.dart';
+import 'package:legalsuits/screens/loading.dart';
 import 'package:legalsuits/services/auth.dart';
+import 'package:legalsuits/services/connect.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AllAttorneys extends StatefulWidget {
@@ -21,6 +23,8 @@ class AllAttorneys extends StatefulWidget {
 class _AllAttorneysState extends State<AllAttorneys> {
   String cat = "";
   String filter = "";
+  List attorneydata;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -68,7 +72,7 @@ class _AllAttorneysState extends State<AllAttorneys> {
                             : Navigator.push(
                                 context,
                                 PageTransition(
-                                  child: ClientHome(),
+                                  child: MainPage(child: ClientHome()),
                                   type: PageTransitionType.fade,
                                 ),
                               );
@@ -305,16 +309,24 @@ class _AllAttorneysState extends State<AllAttorneys> {
             ),
             //Atorneys related to the filter
             Expanded(
-                child: ListView(
-              children: [
-                AttorneyCard(),
-                AttorneyCard(),
-                AttorneyCard(),
-                AttorneyCard(),
-                AttorneyCard(),
-                AttorneyCard(),
-              ],
-            )),
+                child: attorneydata == null
+                    ? Center(
+                        child: LoadingPage(),
+                      )
+                    : attorneydata.isEmpty
+                        ? Center(
+                            child: Text("No data"),
+                          )
+                        : ListView(
+                            children: [
+                              AttorneyCard(),
+                              AttorneyCard(),
+                              AttorneyCard(),
+                              AttorneyCard(),
+                              AttorneyCard(),
+                              AttorneyCard(),
+                            ],
+                          )),
           ],
         ),
       ),

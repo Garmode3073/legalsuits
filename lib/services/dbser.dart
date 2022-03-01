@@ -91,6 +91,22 @@ class DBServices {
     }
   }
 
+  Future getallattorneys() async {
+    try {
+      var v = await FirebaseFirestore.instance
+          .collection("attorneys")
+          .get()
+          .then((value) =>
+              value.docs.map((e) => Attorney.fromMap(e.data())).toList())
+          .asStream();
+      return v;
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
   //updating data
 
 }

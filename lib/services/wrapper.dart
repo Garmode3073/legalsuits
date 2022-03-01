@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:legalsuits/models/attorney.dart';
 import 'package:legalsuits/models/user.dart';
 import 'package:legalsuits/screens/attorney/home.dart';
 import 'package:legalsuits/screens/client/attorney.dart';
@@ -19,7 +20,9 @@ class _WrapperState extends State<Wrapper> {
   void init(uid) async {
     g.type = await DBServices().getType(uid);
     g.user.type = await DBServices().getType(uid);
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -34,8 +37,8 @@ class _WrapperState extends State<Wrapper> {
       if (g.type == null) {
         return LoadingPage();
       }
-      if (g.user.type == "client") {
-        return AllAttorneys();
+      if (g.user.type == "client" and attorneys!=null) {
+        return AllAttorneys(),
       }
       if (g.user.type == "attorney") {
         return AttorneyHome();
