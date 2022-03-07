@@ -3,6 +3,7 @@ import 'package:legalsuits/components/authbutt.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/services/auth.dart';
 
 class MyProfileAttorney extends StatefulWidget {
   const MyProfileAttorney({Key key}) : super(key: key);
@@ -284,6 +285,35 @@ class _MyProfileAttorneyState extends State<MyProfileAttorney> {
                   child: Text(
                     "Save",
                     style: buttontext,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: g.height * 0.04,
+          ),
+          //save button
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              RawMaterialButton(
+                onPressed: () async {
+                  Navigator.pop(context);
+                  await AuthServices().signout();
+                },
+                child: Container(
+                  width: g.width * 0.7,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: g.primary,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Sign Out",
+                      style: buttontext,
+                    ),
                   ),
                 ),
               ),

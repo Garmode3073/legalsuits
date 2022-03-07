@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:legalsuits/components/cards.dart';
 import 'package:legalsuits/components/commons.dart';
-import 'package:legalsuits/components/images.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/models/attorney.dart';
+import 'package:legalsuits/models/case.dart';
+import 'package:legalsuits/screens/loading.dart';
 
 class FullCase extends StatefulWidget {
-  const FullCase({Key key}) : super(key: key);
-
+  const FullCase({Key key, this.caseModel}) : super(key: key);
+  final CaseModel caseModel;
   @override
   _FullCaseState createState() => _FullCaseState();
 }
 
 class _FullCaseState extends State<FullCase> {
+  List<Attorney> attintrested;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +84,7 @@ class _FullCaseState extends State<FullCase> {
                   child: Row(
                     children: [
                       Text(
-                        "Case Title",
+                        widget.caseModel.caseTitle,
                         style: casetitle,
                       ),
                     ],
@@ -96,7 +99,7 @@ class _FullCaseState extends State<FullCase> {
                   child: Row(
                     children: [
                       Text(
-                        "subject of Case",
+                        widget.caseModel.caseSubject,
                         style: casesubject,
                       ),
                     ],
@@ -110,42 +113,49 @@ class _FullCaseState extends State<FullCase> {
                   padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
                   child: Text(
                     '''
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
+${widget.caseModel.caseDescription}
                     ''',
                     style: caseSubtitle,
                     softWrap: true,
                   ),
                 ),
-                SizedBox(
-                  height: g.height * 0.048,
-                ),
+
                 //interested attorneys
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Attorney Interested",
-                        style: casetitle,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: g.height * 0.008,
-                ),
-                AttorneyCard(),
-                AttorneyCard(),
-                AttorneyCard(),
-                AttorneyCard(),
-                AttorneyCard(),
-                AttorneyCard(),
               ],
             ),
+          ),
+          Expanded(
+            child: attintrested == null
+                ? LoadingPage()
+                : attintrested.isEmpty
+                    ? Center(
+                        child: Text("No Data"),
+                      )
+                    : ListView(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: g.width * 0.045),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Attorney Interested",
+                                  style: casetitle,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: g.height * 0.008,
+                          ),
+                          AttorneyCard(),
+                          AttorneyCard(),
+                          AttorneyCard(),
+                          AttorneyCard(),
+                          AttorneyCard(),
+                          AttorneyCard(),
+                        ],
+                      ),
           ),
         ],
       ),

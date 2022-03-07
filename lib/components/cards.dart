@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/images.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/models/attorney.dart';
+import 'package:legalsuits/models/case.dart';
 import 'package:legalsuits/screens/client/attorneyinfo.dart';
 import 'package:legalsuits/screens/client/fullcase.dart';
 import 'package:page_transition/page_transition.dart';
 
 class CaseCard extends StatefulWidget {
-  const CaseCard({Key key, this.onPressed}) : super(key: key);
-  final Function onPressed;
+  const CaseCard({Key key, this.casemode}) : super(key: key);
+  final CaseModel casemode;
 
   @override
   _CaseCardState createState() => _CaseCardState();
@@ -38,7 +40,17 @@ class _CaseCardState extends State<CaseCard> {
               ],
             ),
             child: RawMaterialButton(
-              onPressed: widget.onPressed,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: FullCase(
+                      caseModel: widget.casemode,
+                    ),
+                    type: PageTransitionType.fade,
+                  ),
+                );
+              },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -46,7 +58,7 @@ class _CaseCardState extends State<CaseCard> {
                     padding: const EdgeInsets.only(
                         left: 15, right: 15, top: 21, bottom: 4.5),
                     child: Text(
-                      "Case Title",
+                      widget.casemode.caseTitle,
                       style: casetitle,
                     ),
                   ),
@@ -54,7 +66,7 @@ class _CaseCardState extends State<CaseCard> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.5),
                     child: Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et.",
+                      widget.casemode.caseDescription,
                       style: caseSubtitle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -73,7 +85,15 @@ class _CaseCardState extends State<CaseCard> {
                           ),
                         ),
                         child: RawMaterialButton(
-                          onPressed: widget.onPressed,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                child: FullCase(),
+                                type: PageTransitionType.fade,
+                              ),
+                            );
+                          },
                           child: Center(
                             child: Text("More", style: caseMoreButton),
                           ),
@@ -95,8 +115,8 @@ class _CaseCardState extends State<CaseCard> {
 }
 
 class CaseCard2 extends StatefulWidget {
-  const CaseCard2({Key key, this.onPressed}) : super(key: key);
-  final Function onPressed;
+  const CaseCard2({Key key, this.caseModel}) : super(key: key);
+  final CaseModel caseModel;
 
   @override
   _CaseCard2State createState() => _CaseCard2State();
@@ -126,7 +146,15 @@ class _CaseCard2State extends State<CaseCard2> {
               ],
             ),
             child: RawMaterialButton(
-              onPressed: widget.onPressed,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: FullCase(),
+                    type: PageTransitionType.fade,
+                  ),
+                );
+              },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -134,7 +162,7 @@ class _CaseCard2State extends State<CaseCard2> {
                     padding: const EdgeInsets.only(
                         left: 15, right: 15, top: 21, bottom: 4.5),
                     child: Text(
-                      "Case Title",
+                      widget.caseModel.caseTitle,
                       style: casetitle,
                     ),
                   ),
@@ -142,7 +170,7 @@ class _CaseCard2State extends State<CaseCard2> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.5),
                     child: Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et.",
+                      widget.caseModel.caseDescription,
                       style: caseSubtitle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -161,7 +189,15 @@ class _CaseCard2State extends State<CaseCard2> {
                           ),
                         ),
                         child: RawMaterialButton(
-                          onPressed: widget.onPressed,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                child: FullCase(),
+                                type: PageTransitionType.fade,
+                              ),
+                            );
+                          },
                           child: Center(
                             child: Text("Interested", style: caseMoreButton),
                           ),
@@ -177,7 +213,15 @@ class _CaseCard2State extends State<CaseCard2> {
                           ),
                         ),
                         child: RawMaterialButton(
-                          onPressed: widget.onPressed,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                child: FullCase(),
+                                type: PageTransitionType.fade,
+                              ),
+                            );
+                          },
                           child: Center(
                             child: Text("More", style: caseMoreButton),
                           ),
@@ -199,7 +243,8 @@ class _CaseCard2State extends State<CaseCard2> {
 }
 
 class AttorneyCard extends StatefulWidget {
-  const AttorneyCard({Key key}) : super(key: key);
+  const AttorneyCard({Key key, this.attorney}) : super(key: key);
+  final Attorney attorney;
 
   @override
   _AttorneyCardState createState() => _AttorneyCardState();
@@ -208,6 +253,8 @@ class AttorneyCard extends StatefulWidget {
 class _AttorneyCardState extends State<AttorneyCard> {
   @override
   Widget build(BuildContext context) {
+    String llb = widget.attorney.llb ? "LLB" : "-";
+    String llm = widget.attorney.llm ? "LLM" : "-";
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 14.0,
@@ -232,7 +279,9 @@ class _AttorneyCardState extends State<AttorneyCard> {
             Navigator.push(
               context,
               PageTransition(
-                child: AttorneyInfo(),
+                child: AttorneyInfo(
+                  attorney: widget.attorney,
+                ),
                 type: PageTransitionType.fade,
               ),
             );
@@ -271,7 +320,7 @@ class _AttorneyCardState extends State<AttorneyCard> {
                           width: 8,
                         ),
                         Text(
-                          "Harvey Specter",
+                          widget.attorney.username,
                           style: attname,
                         ),
                       ],
@@ -285,7 +334,7 @@ class _AttorneyCardState extends State<AttorneyCard> {
                           width: 8,
                         ),
                         Text(
-                          "Criminal Attorney",
+                          widget.attorney.category + " Attorney",
                           style: attdetails,
                         ),
                       ],
@@ -302,7 +351,7 @@ class _AttorneyCardState extends State<AttorneyCard> {
                           width: 8,
                         ),
                         Text(
-                          "LLB, LLM",
+                          llb + ", " + llm,
                           style: attdetails,
                         ),
                       ],
@@ -324,7 +373,7 @@ class _AttorneyCardState extends State<AttorneyCard> {
                                   width: 8,
                                 ),
                                 Text(
-                                  "1000/hr",
+                                  widget.attorney.ratePh.toString() + "/hr",
                                   style: attdetails,
                                 ),
                               ],

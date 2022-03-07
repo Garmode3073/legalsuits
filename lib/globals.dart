@@ -1,4 +1,6 @@
 //measurements
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:legalsuits/models/attorney.dart';
 import 'package:legalsuits/models/user.dart';
@@ -58,3 +60,10 @@ List filters2 = [
   'Newly Added to Old',
   'High to Low',
 ];
+
+//random string
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+Random _rnd = Random();
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));

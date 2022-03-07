@@ -71,4 +71,5 @@ class _MainPageState extends State<MainPage> {
         ? NoNetwork()
         : widget.child;
   }
+  
 }

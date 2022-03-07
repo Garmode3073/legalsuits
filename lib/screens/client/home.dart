@@ -4,9 +4,9 @@ import 'package:legalsuits/components/cards.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
-import 'package:legalsuits/screens/client/fullcase.dart';
 import 'package:legalsuits/screens/client/newcase.dart';
 import 'package:legalsuits/screens/loading.dart';
+import 'package:legalsuits/services/dbser.dart';
 import 'package:page_transition/page_transition.dart';
 
 class ClientHome extends StatefulWidget {
@@ -18,6 +18,21 @@ class ClientHome extends StatefulWidget {
 
 class _ClientHomeState extends State<ClientHome> {
   List allcases;
+
+  getdata() async {
+    allcases = await DBServices().getcases();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getdata();
+    });
+    print(allcases);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -100,74 +115,11 @@ class _ClientHomeState extends State<ClientHome> {
                             child: Text("No data"),
                           )
                         : ListView(
-                            children: [
-                              CaseCard(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      child: FullCase(),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                },
-                              ),
-                              CaseCard(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      child: FullCase(),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                },
-                              ),
-                              CaseCard(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      child: FullCase(),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                },
-                              ),
-                              CaseCard(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      child: FullCase(),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                },
-                              ),
-                              CaseCard(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      child: FullCase(),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                },
-                              ),
-                              CaseCard(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      child: FullCase(),
-                                      type: PageTransitionType.fade,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
+                            children: List.generate(
+                                allcases.length,
+                                (i) => CaseCard(
+                                      casemode: allcases[i],
+                                    )),
                           )),
             //Add new case button
             SubmitButton(

@@ -1,4 +1,4 @@
-class Case {
+class CaseModel {
   String caseid;
   String caseTitle;
   String caseSubject;
@@ -6,13 +6,15 @@ class Case {
   String uid;
   DateTime dateTime;
 
-  Case.fromMap(Map map) {
+  CaseModel.fromMap(Map map) {
     this.caseid = map["caseId"];
     this.caseTitle = map["caseTitle"];
     this.caseSubject = map["caseSubject"];
     this.caseDescription = map["caseDescription"];
     this.uid = map["uid"];
-    this.dateTime = map["dateTime"];
+    this.dateTime = map["dateTime"] is DateTime
+        ? map["dateTime"]
+        : map["dateTime"].toDate();
   }
 
   Map<String, dynamic> tomap() {

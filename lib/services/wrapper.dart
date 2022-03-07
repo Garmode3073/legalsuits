@@ -37,8 +37,8 @@ class _WrapperState extends State<Wrapper> {
       if (g.type == null) {
         return LoadingPage();
       }
-      if (g.user.type == "client" and attorneys!=null) {
-        return AllAttorneys(),
+      if (g.user.type == "client") {
+        return AllAttorneys();
       }
       if (g.user.type == "attorney") {
         return AttorneyHome();

@@ -3,11 +3,13 @@ import 'package:legalsuits/components/authbutt.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/images.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/models/attorney.dart';
 import 'package:legalsuits/screens/client/contactatt.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AttorneyInfo extends StatefulWidget {
-  const AttorneyInfo({Key key}) : super(key: key);
+  const AttorneyInfo({Key key, this.attorney}) : super(key: key);
+  final Attorney attorney;
 
   @override
   _AttorneyInfoState createState() => _AttorneyInfoState();
@@ -16,6 +18,8 @@ class AttorneyInfo extends StatefulWidget {
 class _AttorneyInfoState extends State<AttorneyInfo> {
   @override
   Widget build(BuildContext context) {
+    String llb = widget.attorney.llb ? "LLB" : "-";
+    String llm = widget.attorney.llm ? "LLM" : "-";
     return Scaffold(
       body: ListView(
         children: [
@@ -112,7 +116,7 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
                         width: 8,
                       ),
                       Text(
-                        "Harvey Specter",
+                        widget.attorney.username,
                         style: attname,
                       ),
                     ],
@@ -126,7 +130,7 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
                         width: 8,
                       ),
                       Text(
-                        "Criminal Attorney",
+                        widget.attorney.category + " Attorney",
                         style: attdetails,
                       ),
                     ],
@@ -143,7 +147,7 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
                         width: 8,
                       ),
                       Text(
-                        "LLB, LLM",
+                        llb + ", " + llm,
                         style: attdetails,
                       ),
                     ],
@@ -160,7 +164,7 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
                         width: 8,
                       ),
                       Text(
-                        "1000/hr",
+                        widget.attorney.ratePh.toString() + "/hr",
                         style: attdetails,
                       ),
                     ],
@@ -180,20 +184,20 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
           ),
 
           //Attorney info in details
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
-            child: Text(
-              '''
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
+//           Padding(
+//             padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+//             child: Text(
+//               '''
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-                    ''',
-              style: caseSubtitle,
-              softWrap: true,
-            ),
-          ),
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
+//                     ''',
+//               style: caseSubtitle,
+//               softWrap: true,
+//             ),
+//           ),
           SizedBox(
             height: g.height * 0.048,
           ),
@@ -222,7 +226,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in maur
                   Navigator.push(
                     context,
                     PageTransition(
-                      child: ContactAttorney(),
+                      child: ContactAttorney(
+                        attorney: widget.attorney,
+                      ),
                       type: PageTransitionType.fade,
                     ),
                   );

@@ -114,9 +114,13 @@ class _SearchFieldState extends State<SearchField> {
 
 //text field for forms of adding new cases etc.abstract
 class AddNewFormField extends StatefulWidget {
-  const AddNewFormField({Key key, this.hintText, this.lines}) : super(key: key);
+  const AddNewFormField(
+      {Key key, this.hintText, this.lines, this.validate, this.ctrl})
+      : super(key: key);
   final String hintText;
   final int lines;
+  final Function validate;
+  final TextEditingController ctrl;
 
   @override
   _AddNewFormFieldState createState() => _AddNewFormFieldState();
@@ -128,7 +132,9 @@ class _AddNewFormFieldState extends State<AddNewFormField> {
     return TextFormField(
       minLines: widget.lines,
       maxLines: widget.lines,
+      controller: widget.ctrl,
       style: textaddcase,
+      validator: widget.validate,
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: hinttextaddcase,

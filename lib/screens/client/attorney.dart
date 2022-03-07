@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:legalsuits/models/attorney.dart';
 import 'package:flutter/material.dart';
 import 'package:legalsuits/components/authbutt.dart';
 import 'package:legalsuits/components/cards.dart';
@@ -12,6 +12,7 @@ import 'package:legalsuits/screens/loading.dart';
 import 'package:legalsuits/services/auth.dart';
 import 'package:legalsuits/services/connect.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:legalsuits/services/dbser.dart';
 
 class AllAttorneys extends StatefulWidget {
   const AllAttorneys({Key key}) : super(key: key);
@@ -23,7 +24,23 @@ class AllAttorneys extends StatefulWidget {
 class _AllAttorneysState extends State<AllAttorneys> {
   String cat = "";
   String filter = "";
-  List attorneydata;
+  List<Attorney> listatts;
+
+  getdata(filter) async {
+    listatts = await DBServices().getallattorneys(filter);
+  }
+
+  getdata2(category, filter) async {
+    listatts = await DBServices().getattorneyscat(category, filter);
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getdata("");
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +130,9 @@ class _AllAttorneysState extends State<AllAttorneys> {
                       ),
                       child: RawMaterialButton(
                         onPressed: () {
+                          filter == null
+                              ? getdata2(g.categories[i], "")
+                              : getdata2(g.categories[i], filter);
                           setState(() {
                             cat = g.categories[i];
                           });
@@ -280,6 +300,12 @@ class _AllAttorneysState extends State<AllAttorneys> {
                                                     ),
                                                     child: RawMaterialButton(
                                                       onPressed: () {
+                                                        if (cat == "") {
+                                                          getdata(filter2);
+                                                        } else {
+                                                          getdata2(
+                                                              cat, filter2);
+                                                        }
                                                         filter = filter2;
                                                         Navigator.pop(context);
                                                       },
@@ -309,24 +335,23 @@ class _AllAttorneysState extends State<AllAttorneys> {
             ),
             //Atorneys related to the filter
             Expanded(
-                child: attorneydata == null
-                    ? Center(
-                        child: LoadingPage(),
-                      )
-                    : attorneydata.isEmpty
-                        ? Center(
-                            child: Text("No data"),
-                          )
-                        : ListView(
-                            children: [
-                              AttorneyCard(),
-                              AttorneyCard(),
-                              AttorneyCard(),
-                              AttorneyCard(),
-                              AttorneyCard(),
-                              AttorneyCard(),
-                            ],
-                          )),
+              child: listatts == null
+                  ? Center(
+                      child: LoadingPage(),
+                    )
+                  : listatts.isEmpty
+                      ? Center(
+                          child: Text("No data"),
+                        )
+                      : ListView(
+                          children: List<Widget>.generate(
+                            listatts.length,
+                            (i) => AttorneyCard(
+                              attorney: listatts[i],
+                            ),
+                          ),
+                        ),
+            ),
           ],
         ),
       ),

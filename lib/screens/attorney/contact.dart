@@ -37,72 +37,12 @@ class _ContactPageState extends State<ContactPage> {
           Expanded(
             child: ListView(
               children: [
-                CaseCard(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        child: ContactedCase(),
-                        type: PageTransitionType.fade,
-                      ),
-                    );
-                  },
-                ),
-                CaseCard(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        child: ContactedCase(),
-                        type: PageTransitionType.fade,
-                      ),
-                    );
-                  },
-                ),
-                CaseCard(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        child: ContactedCase(),
-                        type: PageTransitionType.fade,
-                      ),
-                    );
-                  },
-                ),
-                CaseCard(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        child: ContactedCase(),
-                        type: PageTransitionType.fade,
-                      ),
-                    );
-                  },
-                ),
-                CaseCard(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        child: ContactedCase(),
-                        type: PageTransitionType.fade,
-                      ),
-                    );
-                  },
-                ),
-                CaseCard(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        child: ContactedCase(),
-                        type: PageTransitionType.fade,
-                      ),
-                    );
-                  },
-                ),
+                CaseCard(),
+                CaseCard(),
+                CaseCard(),
+                CaseCard(),
+                CaseCard(),
+                CaseCard(),
               ],
             ),
           ),

@@ -190,24 +190,12 @@ class _ListCasesPageState extends State<ListCasesPage> {
           Expanded(
             child: ListView(
               children: [
-                CaseCard2(
-                  onPressed: () {},
-                ),
-                CaseCard2(
-                  onPressed: () {},
-                ),
-                CaseCard2(
-                  onPressed: () {},
-                ),
-                CaseCard2(
-                  onPressed: () {},
-                ),
-                CaseCard2(
-                  onPressed: () {},
-                ),
-                CaseCard2(
-                  onPressed: () {},
-                ),
+                CaseCard2(),
+                CaseCard2(),
+                CaseCard2(),
+                CaseCard2(),
+                CaseCard2(),
+                CaseCard2(),
               ],
             ),
           ),
