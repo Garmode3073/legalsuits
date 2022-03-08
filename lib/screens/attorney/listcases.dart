@@ -19,6 +19,7 @@ class ListCasesPage extends StatefulWidget {
 class _ListCasesPageState extends State<ListCasesPage> {
   String filter = "";
   List<CaseModel> cases;
+  TextEditingController search = TextEditingController(text: "");
 
   getdata() async {
     cases = await DBServices().getcases();
@@ -44,7 +45,14 @@ class _ListCasesPageState extends State<ListCasesPage> {
       child: Column(
         children: <Widget>[
           //SearchBar
-          SearchField(),
+          SearchField(
+            ctrl: search,
+            onPressed: () async {
+              if (search.text.trim().isNotEmpty) {
+                cases = await DBServices().getcaseslike(search.text.trim());
+              }
+            },
+          ),
           SizedBox(
             height: g.height * 0.05,
           ),

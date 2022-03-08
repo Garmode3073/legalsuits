@@ -78,7 +78,9 @@ class _TxtFieldState extends State<TxtField> {
 //textfield for search bar
 
 class SearchField extends StatefulWidget {
-  const SearchField({Key key}) : super(key: key);
+  const SearchField({Key key, this.onPressed, this.ctrl}) : super(key: key);
+  final Function onPressed;
+  final TextEditingController ctrl;
 
   @override
   _SearchFieldState createState() => _SearchFieldState();
@@ -94,6 +96,7 @@ class _SearchFieldState extends State<SearchField> {
         borderRadius: BorderRadius.circular(18),
         color: Colors.transparent,
         child: TextField(
+          controller: widget.ctrl,
           decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
@@ -104,7 +107,7 @@ class _SearchFieldState extends State<SearchField> {
               hintStyle: hint,
               prefixIcon: IconButton(
                 icon: Icon(Icons.search),
-                onPressed: () async {},
+                onPressed: widget.onPressed,
               )),
         ),
       ),

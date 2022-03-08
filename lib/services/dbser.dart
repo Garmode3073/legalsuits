@@ -360,6 +360,48 @@ class DBServices {
         .then((value) => value.docs.map((e) => e.data()).toList());
   }
 
+  Future getattorneyslike(String str) async {
+    try {
+      var v = await FirebaseFirestore.instance
+          .collection("attorneys")
+          .where(
+            "username",
+            isGreaterThanOrEqualTo: str,
+            isLessThan: str.substring(0, str.length - 1) +
+                String.fromCharCode(str.codeUnitAt(str.length - 1) + 1),
+          )
+          .get()
+          .then((value) =>
+              value.docs.map((e) => Attorney.fromMap(e.data())).toList());
+      return v;
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  Future getcaseslike(String str) async {
+    try {
+      var v = await FirebaseFirestore.instance
+          .collection("cases")
+          .where(
+            "title",
+            isGreaterThanOrEqualTo: str,
+            isLessThan: str.substring(0, str.length - 1) +
+                String.fromCharCode(str.codeUnitAt(str.length - 1) + 1),
+          )
+          .get()
+          .then((value) =>
+              value.docs.map((e) => CaseModel.fromMap(e.data())).toList());
+      return v;
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
   //updating data
 
   Future updateattorney(Attorney attorney) async {

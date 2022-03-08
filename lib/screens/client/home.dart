@@ -18,10 +18,11 @@ class ClientHome extends StatefulWidget {
 
 class _ClientHomeState extends State<ClientHome> {
   List allcases;
+  TextEditingController search = TextEditingController(text: "");
 
   getdata() async {
     allcases = await DBServices().getcases();
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   @override
@@ -99,7 +100,15 @@ class _ClientHomeState extends State<ClientHome> {
               height: g.height * 0.0392,
             ),
             //search field
-            SearchField(),
+            SearchField(
+              ctrl: search,
+              onPressed: () async {
+                if (search.text.trim().isNotEmpty) {
+                  allcases =
+                      await DBServices().getcaseslike(search.text.trim());
+                }
+              },
+            ),
             SizedBox(
               height: 15,
             ),

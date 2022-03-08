@@ -370,9 +370,10 @@ class _AttorneyCardState extends State<AttorneyCard> {
       img = await FirebaseStorage.instance
           .ref("profile/${widget.attorney.uid}")
           .getDownloadURL();
-      setState(() {
-        print(img);
-      });
+      if (mounted)
+        setState(() {
+          print(img);
+        });
     }
   }
 

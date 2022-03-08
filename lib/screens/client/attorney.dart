@@ -25,6 +25,7 @@ class _AllAttorneysState extends State<AllAttorneys> {
   String cat = "";
   String filter = "";
   List<Attorney> listatts;
+  TextEditingController search = TextEditingController(text: "");
 
   getdata(filter) async {
     listatts = await DBServices().getallattorneys(filter);
@@ -101,7 +102,15 @@ class _AllAttorneysState extends State<AllAttorneys> {
             ),
 
             //search field
-            SearchField(),
+            SearchField(
+              ctrl: search,
+              onPressed: () async {
+                if (search.text.trim().isNotEmpty) {
+                  listatts =
+                      await DBServices().getattorneyslike(search.text.trim());
+                }
+              },
+            ),
             SizedBox(
               height: g.height * 0.079,
             ),
