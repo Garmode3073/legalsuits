@@ -5,6 +5,7 @@ import 'package:legalsuits/models/client.dart';
 import 'package:legalsuits/models/contact.dart';
 import 'package:legalsuits/models/user.dart';
 import 'package:legalsuits/models/case.dart';
+import 'package:legalsuits/globals.dart' as g;
 
 class DBServices {
   //adding data
@@ -112,6 +113,21 @@ class DBServices {
     try {
       var v = await FirebaseFirestore.instance.collection(type).doc(uid).get();
       return v.data();
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  Future getattorney(String uid) async {
+    try {
+      var v = await FirebaseFirestore.instance
+          .collection("attorneys")
+          .doc(uid)
+          .get()
+          .then((value) => Attorney.fromMap(value.data()));
+      return v;
     } on PlatformException catch (e) {
       return e.message;
     } catch (e) {
@@ -239,6 +255,61 @@ class DBServices {
     }
   }
 
+  Future getcasesfilter(String filter) async {
+    try {
+      if (filter == "Newly Added to Old") {
+        var v = await FirebaseFirestore.instance
+            .collection("cases")
+            .orderBy("dateTime", descending: false)
+            .get()
+            .then((value) =>
+                value.docs.map((e) => CaseModel.fromMap(e.data())).toList());
+        return v;
+      }
+      if (filter == "High to Low") {
+        var v = await FirebaseFirestore.instance
+            .collection("cases")
+            .orderBy("dateTime", descending: true)
+            .get()
+            .then((value) =>
+                value.docs.map((e) => CaseModel.fromMap(e.data())).toList());
+        return v;
+      }
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  Future getcontacts() async {
+    try {
+      var v = await FirebaseFirestore.instance
+          .collection("contact")
+          .where("attorneyid", isEqualTo: g.user.uid)
+          .get()
+          .then((value) =>
+              value.docs.map((e) => Contact.fromMap(e.data())).toList());
+      return v;
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
   //updating data
 
+  Future updateattorney(Attorney attorney) async {
+    try {
+      var v = await FirebaseFirestore.instance
+          .collection("attorneys")
+          .doc(attorney.uid)
+          .set(attorney.tomap());
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
 }

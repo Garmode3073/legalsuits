@@ -4,6 +4,8 @@ import 'package:legalsuits/components/images.dart';
 import 'package:legalsuits/globals.dart' as g;
 import 'package:legalsuits/models/attorney.dart';
 import 'package:legalsuits/models/case.dart';
+import 'package:legalsuits/models/contact.dart';
+import 'package:legalsuits/screens/attorney/fullcontact.dart';
 import 'package:legalsuits/screens/client/attorneyinfo.dart';
 import 'package:legalsuits/screens/client/fullcase.dart';
 import 'package:page_transition/page_transition.dart';
@@ -150,7 +152,9 @@ class _CaseCard2State extends State<CaseCard2> {
                 Navigator.push(
                   context,
                   PageTransition(
-                    child: FullCase(),
+                    child: FullCase(
+                      caseModel: widget.caseModel,
+                    ),
                     type: PageTransitionType.fade,
                   ),
                 );
@@ -189,20 +193,120 @@ class _CaseCard2State extends State<CaseCard2> {
                           ),
                         ),
                         child: RawMaterialButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                child: FullCase(),
-                                type: PageTransitionType.fade,
-                              ),
-                            );
-                          },
+                          onPressed: () {},
                           child: Center(
                             child: Text("Interested", style: caseMoreButton),
                           ),
                         ),
                       ),
+                      Container(
+                        height: 21,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: g.primary,
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
+                        child: RawMaterialButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                child: FullCase(
+                                  caseModel: widget.caseModel,
+                                ),
+                                type: PageTransitionType.fade,
+                              ),
+                            );
+                          },
+                          child: Center(
+                            child: Text("More", style: caseMoreButton),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: g.height * 0.0318,
+        ),
+      ],
+    );
+  }
+}
+
+class ContactCard extends StatefulWidget {
+  const ContactCard({Key key, this.contact}) : super(key: key);
+  final Contact contact;
+
+  @override
+  _ContactCardState createState() => _ContactCardState();
+}
+
+class _ContactCardState extends State<ContactCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+            left: g.width * 0.077,
+            right: g.width * 0.077,
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 15,
+                  offset: Offset(0, 0),
+                  color: g.blackfont2.withOpacity(0.1),
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: RawMaterialButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    child: ContactedCase(
+                      contact: widget.contact,
+                    ),
+                    type: PageTransitionType.fade,
+                  ),
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 15, right: 15, top: 21, bottom: 4.5),
+                    child: Text(
+                      widget.contact.title,
+                      style: casetitle,
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.5),
+                    child: Text(
+                      widget.contact.message,
+                      style: caseSubtitle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
                       Container(
                         height: 21,
                         width: 80,

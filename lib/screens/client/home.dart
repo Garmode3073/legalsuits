@@ -29,7 +29,6 @@ class _ClientHomeState extends State<ClientHome> {
     setState(() {
       getdata();
     });
-    print(allcases);
     super.initState();
   }
 

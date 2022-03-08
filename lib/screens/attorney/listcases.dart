@@ -5,6 +5,9 @@ import 'package:legalsuits/components/cards.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/textfield.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/models/case.dart';
+import 'package:legalsuits/screens/loading.dart';
+import 'package:legalsuits/services/dbser.dart';
 
 class ListCasesPage extends StatefulWidget {
   const ListCasesPage({Key key}) : super(key: key);
@@ -15,6 +18,26 @@ class ListCasesPage extends StatefulWidget {
 
 class _ListCasesPageState extends State<ListCasesPage> {
   String filter = "";
+  List<CaseModel> cases;
+
+  getdata() async {
+    cases = await DBServices().getcases();
+    setState(() {});
+  }
+
+  getdata2(filters) async {
+    cases = await DBServices().getcasesfilter(filter);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getdata();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -160,6 +183,7 @@ class _ListCasesPageState extends State<ListCasesPage> {
                                                   ),
                                                   child: RawMaterialButton(
                                                     onPressed: () {
+                                                      getdata2(filter2);
                                                       filter = filter2;
                                                       Navigator.pop(context);
                                                     },
@@ -188,16 +212,19 @@ class _ListCasesPageState extends State<ListCasesPage> {
           ),
           //cards of cases
           Expanded(
-            child: ListView(
-              children: [
-                CaseCard2(),
-                CaseCard2(),
-                CaseCard2(),
-                CaseCard2(),
-                CaseCard2(),
-                CaseCard2(),
-              ],
-            ),
+            child: cases == null
+                ? LoadingPage()
+                : cases.isEmpty
+                    ? Center(
+                        child: Text("No Data"),
+                      )
+                    : ListView(
+                        children: List.generate(
+                            cases.length,
+                            (i) => CaseCard2(
+                                  caseModel: cases[i],
+                                )),
+                      ),
           ),
           Container(
             height: g.height * 0.1,

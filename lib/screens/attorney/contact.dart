@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:legalsuits/components/cards.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/models/contact.dart';
 import 'package:legalsuits/screens/attorney/fullcontact.dart';
+import 'package:legalsuits/screens/loading.dart';
+import 'package:legalsuits/services/dbser.dart';
 import 'package:page_transition/page_transition.dart';
 
 class ContactPage extends StatefulWidget {
@@ -13,6 +16,21 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+  List<Contact> contacts;
+
+  getdata() async {
+    contacts = await DBServices().getcontacts();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getdata();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -35,16 +53,14 @@ class _ContactPageState extends State<ContactPage> {
           ),
           //List of all cases
           Expanded(
-            child: ListView(
-              children: [
-                CaseCard(),
-                CaseCard(),
-                CaseCard(),
-                CaseCard(),
-                CaseCard(),
-                CaseCard(),
-              ],
-            ),
+            child: contacts == null
+                ? LoadingPage()
+                : contacts.isEmpty
+                    ? Center(child: Text("No data"))
+                    : ListView(
+                        children: List.generate(contacts.length,
+                            (i) => ContactCard(contact: contacts[i])),
+                      ),
           ),
           Container(
             height: g.height * 0.1,

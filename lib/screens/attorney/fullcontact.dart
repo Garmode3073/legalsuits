@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/globals.dart' as g;
+import 'package:legalsuits/models/contact.dart';
 
 class ContactedCase extends StatefulWidget {
-  const ContactedCase({Key key}) : super(key: key);
+  const ContactedCase({Key key, this.contact}) : super(key: key);
+  final Contact contact;
 
   @override
   _ContactedCaseState createState() => _ContactedCaseState();
@@ -80,7 +82,7 @@ class _ContactedCaseState extends State<ContactedCase> {
                   child: Row(
                     children: [
                       Text(
-                        "Case Title",
+                        widget.contact.title,
                         style: casetitle,
                       ),
                     ],
@@ -94,16 +96,16 @@ class _ContactedCaseState extends State<ContactedCase> {
                   padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
                   child: Column(
                     children: [
-                      Text(
-                        '''
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-                        ''',
-                        style: caseSubtitle,
-                        softWrap: true,
+                      Row(
+                        children: [
+                          Text(
+                            '''
+${widget.contact.message}
+                            ''',
+                            style: caseSubtitle,
+                            softWrap: true,
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: g.height * 0.048,
@@ -112,7 +114,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in maur
                       Row(
                         children: [
                           Text(
-                            "gauravgarmode16@gmail.com",
+                            widget.contact.email,
                             style: caseSubtitle,
                           ),
                         ],
@@ -124,7 +126,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in maur
                       Row(
                         children: [
                           Text(
-                            "+91 9665634810",
+                            "+91 " + widget.contact.number,
                             style: caseSubtitle,
                           ),
                         ],

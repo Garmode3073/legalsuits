@@ -19,7 +19,10 @@ class Wrapper extends StatefulWidget {
 class _WrapperState extends State<Wrapper> {
   void init(uid) async {
     g.type = await DBServices().getType(uid);
-    g.user.type = await DBServices().getType(uid);
+    if (g.user != null) g.user.type = await DBServices().getType(uid);
+    if (g.user.type != null && g.user.type == "attorney") {
+      g.attorney = await DBServices().getattorney(g.user.uid);
+    }
     if (mounted) {
       setState(() {});
     }
@@ -28,9 +31,11 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserinApp>(context);
-    setState(() {
-      g.user = user;
-    });
+    if (mounted) {
+      setState(() {
+        g.user = user;
+      });
+    }
 
     if (user != null) {
       init(user.uid);
