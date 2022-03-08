@@ -40,6 +40,7 @@ dependencies:
   firebase_storage: ^10.2.3
   file_picker: ^4.2.7
   connectivity_plus: ^1.0.8
+  url_launcher: any
 
 dev_dependencies:
   flutter_test:

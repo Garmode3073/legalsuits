@@ -11,6 +11,7 @@ UserinApp user;
 String type;
 Client client;
 Attorney attorney;
+String img = "";
 
 Map<int, Color> color = {
   50: Color.fromRGBO(211, 155, 45, .1),
@@ -67,3 +68,6 @@ Random _rnd = Random();
 
 String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
     length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+
+//default url 
+String defaulturi = 'https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg';

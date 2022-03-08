@@ -5,6 +5,7 @@ import 'package:legalsuits/globals.dart' as g;
 import 'package:legalsuits/models/attorney.dart';
 import 'package:legalsuits/models/case.dart';
 import 'package:legalsuits/screens/loading.dart';
+import 'package:legalsuits/services/dbser.dart';
 
 class FullCase extends StatefulWidget {
   const FullCase({Key key, this.caseModel}) : super(key: key);
@@ -15,6 +16,21 @@ class FullCase extends StatefulWidget {
 
 class _FullCaseState extends State<FullCase> {
   List<Attorney> attintrested;
+
+  getdata() async {
+    attintrested =
+        await DBServices().getinterestedatts(widget.caseModel.caseid);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getdata();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,54 +91,69 @@ class _FullCaseState extends State<FullCase> {
           SizedBox(
             height: g.height * 0.0597,
           ),
-          Expanded(
-            child: ListView(
-              children: [
-                //Case Title
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
-                  child: Row(
-                    children: [
-                      Text(
-                        widget.caseModel.caseTitle,
-                        style: casetitle,
-                      ),
-                    ],
-                  ),
+          Column(
+            children: [
+              //Case Title
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+                child: Row(
+                  children: [
+                    Text(
+                      widget.caseModel.caseTitle,
+                      style: casetitle,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: g.height * 0.038,
+              ),
+              SizedBox(
+                height: g.height * 0.038,
+              ),
+              //Subject of the case
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+                child: Row(
+                  children: [
+                    Text(
+                      widget.caseModel.caseSubject,
+                      style: casesubject,
+                    ),
+                  ],
                 ),
-                //Subject of the case
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
-                  child: Row(
-                    children: [
-                      Text(
-                        widget.caseModel.caseSubject,
-                        style: casesubject,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: g.height * 0.048,
-                ),
-                //case in details
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
-                  child: Text(
-                    '''
+              ),
+              SizedBox(
+                height: g.height * 0.048,
+              ),
+              //case in details
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+                    child: Text(
+                      '''
 ${widget.caseModel.caseDescription}
-                    ''',
-                    style: caseSubtitle,
-                    softWrap: true,
+                      ''',
+                      style: caseSubtitle,
+                      softWrap: true,
+                    ),
                   ),
+                ],
+              ),
+              SizedBox(
+                height: g.height * 0.008,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+                child: Row(
+                  children: [
+                    Text(
+                      "Attorney Interested",
+                      style: casetitle,
+                    ),
+                  ],
                 ),
-
-                //interested attorneys
-              ],
-            ),
+              ),
+              //interested attorneys
+            ],
           ),
           Expanded(
             child: attintrested == null
@@ -132,29 +163,11 @@ ${widget.caseModel.caseDescription}
                         child: Text("No Data"),
                       )
                     : ListView(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: g.width * 0.045),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Attorney Interested",
-                                  style: casetitle,
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: g.height * 0.008,
-                          ),
-                          AttorneyCard(),
-                          AttorneyCard(),
-                          AttorneyCard(),
-                          AttorneyCard(),
-                          AttorneyCard(),
-                          AttorneyCard(),
-                        ],
+                        children: List.generate(
+                            attintrested.length,
+                            (i) => AttorneyCard(
+                                  attorney: attintrested[i],
+                                )),
                       ),
           ),
         ],

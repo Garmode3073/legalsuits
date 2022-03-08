@@ -1,10 +1,12 @@
 import 'dart:ui';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/globals.dart' as g;
 import 'package:legalsuits/screens/attorney/contact.dart';
 import 'package:legalsuits/screens/attorney/listcases.dart';
 import 'package:legalsuits/screens/attorney/profile.dart';
+import 'package:legalsuits/services/dbser.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AttorneyHome extends StatefulWidget {
@@ -20,6 +22,28 @@ class _AttorneyHomeState extends State<AttorneyHome> {
     "List": ListCasesPage(),
     "Contact": ContactPage(),
   };
+
+  Future getdata() async {
+    List j = await DBServices().isfileexist("profile/${g.attorney.uid}");
+    print(j);
+    if (j.isNotEmpty) {
+      g.img = await FirebaseStorage.instance
+          .ref("profile/${g.attorney.uid}")
+          .getDownloadURL();
+      setState(() {
+        print(g.img);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getdata();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +72,9 @@ class _AttorneyHomeState extends State<AttorneyHome> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.contain,
                             image: NetworkImage(
-                                "https://www.gentlemansgazette.com/wp-content/uploads/2015/08/Fine-pinstripe-suit-with-navy-grenadine-tie.webp"),
+                                g.img == "" ? g.defaulturi : g.img),
                           ),
                         ),
                       ),

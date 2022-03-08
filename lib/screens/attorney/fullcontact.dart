@@ -38,8 +38,7 @@ class _ContactedCaseState extends State<ContactedCase> {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.fitHeight,
-                      image: NetworkImage(
-                          "https://www.gentlemansgazette.com/wp-content/uploads/2015/08/Fine-pinstripe-suit-with-navy-grenadine-tie.webp"),
+                      image: NetworkImage(g.img == "" ? g.defaulturi : g.img),
                     ),
                   ),
                 ),

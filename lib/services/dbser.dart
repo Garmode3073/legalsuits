@@ -75,6 +75,34 @@ class DBServices {
     }
   }
 
+  Future addinterest(String caseid, String attorneyid) async {
+    try {
+      List v = await FirebaseFirestore.instance
+          .collection("interest")
+          .where("caseid", isEqualTo: caseid)
+          .where("attorneyid", isEqualTo: attorneyid)
+          .get()
+          .then((value) => value.docs.map((e) => e.id).toList());
+      if (v.length == 0) {
+        await FirebaseFirestore.instance
+            .collection("interest")
+            .add({"caseid": caseid, "attorneyid": attorneyid});
+      }
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  //addphoto
+  Future addFile(filepath) async {
+    await FirebaseFirestore.instance
+        .collection("docs")
+        .doc()
+        .set({"docid": filepath});
+  }
+
   //retreiving data
   Future getpassword(String email) async {
     try {
@@ -296,6 +324,40 @@ class DBServices {
     } catch (e) {
       return e.message;
     }
+  }
+
+  Future getinterestedatts(String caseid) async {
+    try {
+      var v = await FirebaseFirestore.instance
+          .collection("interest")
+          .where("caseid", isEqualTo: caseid)
+          .get()
+          .then((value) =>
+              value.docs.map((e) => e.data()["attorneyid"]).toList());
+      var u = await FirebaseFirestore.instance
+          .collection("attorneys")
+          .where("uid", whereIn: v)
+          .get()
+          .then((value) =>
+              value.docs.map((e) => Attorney.fromMap(e.data())).toList());
+
+      return u;
+    } on PlatformException catch (e) {
+      print(e.message);
+      return e.message;
+    } catch (e) {
+      print(e.message);
+      return e.message;
+    }
+  }
+
+  //photo exists
+  Future<List> isfileexist(id) async {
+    return await FirebaseFirestore.instance
+        .collection("docs")
+        .where("docid", isEqualTo: id)
+        .get()
+        .then((value) => value.docs.map((e) => e.data()).toList());
   }
 
   //updating data

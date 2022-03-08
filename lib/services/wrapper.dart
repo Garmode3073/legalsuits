@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:legalsuits/models/attorney.dart';
 import 'package:legalsuits/models/user.dart';
@@ -20,7 +21,7 @@ class _WrapperState extends State<Wrapper> {
   void init(uid) async {
     g.type = await DBServices().getType(uid);
     if (g.user != null) g.user.type = await DBServices().getType(uid);
-    if (g.user.type != null && g.user.type == "attorney") {
+    if (g.user != null && g.user.type == "attorney") {
       g.attorney = await DBServices().getattorney(g.user.uid);
     }
     if (mounted) {

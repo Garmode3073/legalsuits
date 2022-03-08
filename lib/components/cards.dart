@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:legalsuits/components/commons.dart';
 import 'package:legalsuits/components/images.dart';
@@ -8,7 +9,9 @@ import 'package:legalsuits/models/contact.dart';
 import 'package:legalsuits/screens/attorney/fullcontact.dart';
 import 'package:legalsuits/screens/client/attorneyinfo.dart';
 import 'package:legalsuits/screens/client/fullcase.dart';
+import 'package:legalsuits/services/dbser.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CaseCard extends StatefulWidget {
   const CaseCard({Key key, this.casemode}) : super(key: key);
@@ -193,7 +196,10 @@ class _CaseCard2State extends State<CaseCard2> {
                           ),
                         ),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await DBServices().addinterest(
+                                widget.caseModel.caseid, g.user.uid);
+                          },
                           child: Center(
                             child: Text("Interested", style: caseMoreButton),
                           ),
@@ -355,6 +361,29 @@ class AttorneyCard extends StatefulWidget {
 }
 
 class _AttorneyCardState extends State<AttorneyCard> {
+  String img = "";
+  Future getdata() async {
+    List j = await DBServices().isfileexist("profile/${widget.attorney.uid}");
+
+    print(j);
+    if (j.isNotEmpty) {
+      img = await FirebaseStorage.instance
+          .ref("profile/${widget.attorney.uid}")
+          .getDownloadURL();
+      setState(() {
+        print(img);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getdata();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     String llb = widget.attorney.llb ? "LLB" : "-";
@@ -401,8 +430,7 @@ class _AttorneyCardState extends State<AttorneyCard> {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.fitHeight,
-                      image: NetworkImage(
-                          "https://www.gentlemansgazette.com/wp-content/uploads/2015/08/Fine-pinstripe-suit-with-navy-grenadine-tie.webp"),
+                      image: NetworkImage(img == "" ? g.defaulturi : img),
                     ),
                   ),
                 ),
@@ -497,7 +525,20 @@ class _AttorneyCardState extends State<AttorneyCard> {
                             ),
                           ),
                           child: RawMaterialButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              List j = await DBServices().isfileexist(
+                                  "pricesheet/${widget.attorney.uid}");
+                              print(j);
+                              if (j.isNotEmpty) {
+                                String url = await FirebaseStorage.instance
+                                    .ref("pricesheet/${widget.attorney.uid}")
+                                    .getDownloadURL();
+                                await launch(url);
+                                setState(() {
+                                  print(g.img);
+                                });
+                              }
+                            },
                             child: Center(
                               child: Text(
                                 "Price Sheet",

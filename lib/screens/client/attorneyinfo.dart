@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:legalsuits/components/authbutt.dart';
 import 'package:legalsuits/components/commons.dart';
@@ -5,7 +6,9 @@ import 'package:legalsuits/components/images.dart';
 import 'package:legalsuits/globals.dart' as g;
 import 'package:legalsuits/models/attorney.dart';
 import 'package:legalsuits/screens/client/contactatt.dart';
+import 'package:legalsuits/services/dbser.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AttorneyInfo extends StatefulWidget {
   const AttorneyInfo({Key key, this.attorney}) : super(key: key);
@@ -16,6 +19,29 @@ class AttorneyInfo extends StatefulWidget {
 }
 
 class _AttorneyInfoState extends State<AttorneyInfo> {
+  String img = "";
+  Future getdata() async {
+    List j = await DBServices().isfileexist("profile/${widget.attorney.uid}");
+
+    print(j);
+    if (j.isNotEmpty) {
+      img = await FirebaseStorage.instance
+          .ref("profile/${widget.attorney.uid}")
+          .getDownloadURL();
+      setState(() {
+        print(img);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getdata();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     String llb = widget.attorney.llb ? "LLB" : "-";
@@ -91,8 +117,7 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       fit: BoxFit.fitHeight,
-                      image: NetworkImage(
-                          "https://www.gentlemansgazette.com/wp-content/uploads/2015/08/Fine-pinstripe-suit-with-navy-grenadine-tie.webp"),
+                      image: NetworkImage(img == "" ? g.defaulturi : img),
                     ),
                   ),
                 ),
@@ -206,11 +231,37 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
             children: [
               AttorneyButton1(
                 buttonname: "Case Price Sheet",
-                onpressed: () {},
+                onpressed: () async {
+                  List j = await DBServices()
+                      .isfileexist("pricesheet/${widget.attorney.uid}");
+                  print(j);
+                  if (j.isNotEmpty) {
+                    String url = await FirebaseStorage.instance
+                        .ref("pricesheet/${widget.attorney.uid}")
+                        .getDownloadURL();
+                    await launch(url);
+                    setState(() {
+                      print(g.img);
+                    });
+                  }
+                },
               ),
               AttorneyButton1(
                 buttonname: "Case Portfolio",
-                onpressed: () {},
+                onpressed: () async {
+                  List j = await DBServices()
+                      .isfileexist("portfolio/${widget.attorney.uid}");
+                  print(j);
+                  if (j.isNotEmpty) {
+                    String url = await FirebaseStorage.instance
+                        .ref("portfolio/${widget.attorney.uid}")
+                        .getDownloadURL();
+                    await launch(url);
+                    setState(() {
+                      print(g.img);
+                    });
+                  }
+                },
               ),
             ],
           ),

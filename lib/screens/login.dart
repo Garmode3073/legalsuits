@@ -193,9 +193,10 @@ class _LoginPageState extends State<LoginPage> {
                                             ),
                                           );
                                         } else {
-                                          setState(() {
-                                            g.type = value.type;
-                                          });
+                                          if (mounted)
+                                            setState(() {
+                                              g.type = value.type;
+                                            });
                                           if (g.type == "client") {
                                             DBServices()
                                                 .getuser(g.user.uid, "clients")
