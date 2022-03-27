@@ -104,8 +104,10 @@ class _ClientHomeState extends State<ClientHome> {
               ctrl: search,
               onPressed: () async {
                 if (search.text.trim().isNotEmpty) {
+                  print(search.text.trim());
                   allcases =
                       await DBServices().getcaseslike(search.text.trim());
+                  setState(() {});
                 }
               },
             ),
@@ -137,7 +139,8 @@ class _ClientHomeState extends State<ClientHome> {
                   context,
                   PageTransition(
                     child: NewCase(),
-                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 500),
+                    type: PageTransitionType.rightToLeft,
                   ),
                 );
               },

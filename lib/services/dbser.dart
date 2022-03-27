@@ -272,9 +272,30 @@ class DBServices {
 
   Future getcases() async {
     try {
-      var v = await FirebaseFirestore.instance.collection("cases").get().then(
-          (value) =>
+      var v = await FirebaseFirestore.instance
+          .collection("cases")
+          .orderBy("caseBudget", descending: true)
+          .get()
+          .then((value) =>
               value.docs.map((e) => CaseModel.fromMap(e.data())).toList());
+      return v;
+    } on PlatformException catch (e) {
+      return e.message;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  Future getcasessuggested(String caseCategory) async {
+    try {
+      var v = await FirebaseFirestore.instance
+          .collection("cases")
+          .where("caseCategory", isEqualTo: caseCategory)
+          .orderBy("caseBudget", descending: true)
+          .get()
+          .then((value) =>
+              value.docs.map((e) => CaseModel.fromMap(e.data())).toList());
+      print(caseCategory);
       return v;
     } on PlatformException catch (e) {
       return e.message;
@@ -385,12 +406,10 @@ class DBServices {
     try {
       var v = await FirebaseFirestore.instance
           .collection("cases")
-          .where(
-            "title",
-            isGreaterThanOrEqualTo: str,
-            isLessThan: str.substring(0, str.length - 1) +
-                String.fromCharCode(str.codeUnitAt(str.length - 1) + 1),
-          )
+          .where("caseTitle",
+              isGreaterThanOrEqualTo: str,
+              isLessThan: str.substring(0, str.length - 1) +
+                  String.fromCharCode(str.codeUnitAt(str.length - 1) + 1))
           .get()
           .then((value) =>
               value.docs.map((e) => CaseModel.fromMap(e.data())).toList());

@@ -67,7 +67,8 @@ class _LoginPageState extends State<LoginPage> {
                                   context,
                                   PageTransition(
                                     child: AllAttorneys(),
-                                    type: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 500),
+                                    type: PageTransitionType.rightToLeft,
                                   ),
                                 );
                               },

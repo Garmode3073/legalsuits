@@ -208,21 +208,17 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
             height: g.height * 0.07,
           ),
 
-          //Attorney info in details
-//           Padding(
-//             padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
-//             child: Text(
-//               '''
-// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus pellentesque ullamcorper ornare et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-
-// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-
-// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem blandit dui in mauris in. Neque - 500550,
-//                     ''',
-//               style: caseSubtitle,
-//               softWrap: true,
-//             ),
-//           ),
+          // Attorney info in details
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+            child: Text(
+              '''
+${widget.attorney.bio}
+                    ''',
+              style: caseSubtitle,
+              softWrap: true,
+            ),
+          ),
           SizedBox(
             height: g.height * 0.048,
           ),
@@ -280,7 +276,8 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
                       child: ContactAttorney(
                         attorney: widget.attorney,
                       ),
-                      type: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 500),
+                      type: PageTransitionType.rightToLeft,
                     ),
                   );
                 },

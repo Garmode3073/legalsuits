@@ -7,6 +7,7 @@ import 'package:legalsuits/models/case.dart';
 import 'package:legalsuits/screens/loading.dart';
 import 'package:legalsuits/services/connect.dart';
 import 'package:legalsuits/services/dbser.dart';
+import 'package:string_validator/string_validator.dart';
 
 class NewCase extends StatefulWidget {
   const NewCase({Key key}) : super(key: key);
@@ -20,7 +21,9 @@ class _NewCaseState extends State<NewCase> {
   TextEditingController title = TextEditingController(text: "");
   TextEditingController subject = TextEditingController(text: "");
   TextEditingController description = TextEditingController(text: "");
+  TextEditingController budget = TextEditingController(text: "");
   bool isload = false;
+  String cat = "";
 
   @override
   Widget build(BuildContext context) {
@@ -160,11 +163,74 @@ class _NewCaseState extends State<NewCase> {
                                     },
                                   ),
                                   SizedBox(
+                                    height: g.height * 0.0219,
+                                  ),
+                                  //Categories
+                                  Container(
+                                    height: g.height * 0.065,
+                                    width: g.width * 0.9,
+                                    child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      children: List.generate(
+                                        4,
+                                        (i) => Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          decoration: BoxDecoration(
+                                              color: cat == g.categories[i]
+                                                  ? g.bluebg
+                                                  : Colors.transparent,
+                                              borderRadius:
+                                                  BorderRadius.circular(18),
+                                              border: Border.all(
+                                                  color: cat == g.categories[i]
+                                                      ? Colors.transparent
+                                                      : Colors.black)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 4.0,
+                                            ),
+                                            child: RawMaterialButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  cat = g.categories[i];
+                                                });
+                                              },
+                                              child: Text(
+                                                g.categories[i],
+                                                style: cat == g.categories[i]
+                                                    ? catAttPageuselected
+                                                    : catAttPageunselected,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: g.height * 0.0219,
+                                  ),
+                                  AddNewFormField(
+                                    ctrl: budget,
+                                    hintText: "Case Budget",
+                                    lines: 1,
+                                    validate: (String budget) {
+                                      if (budget.trim().isEmpty) {
+                                        return "Budget field cannot be empty";
+                                      } else if (!isNumeric(budget.trim())) {
+                                        return "Invalid budget value";
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(
                                     height: g.height * 0.0997,
                                   ),
                                   SubmitButton(
                                     onPressed: () {
-                                      if (_key.currentState.validate()) {
+                                      if (_key.currentState.validate() &&
+                                          cat.isNotEmpty) {
                                         setState(() {
                                           isload = true;
                                         });
@@ -178,6 +244,9 @@ class _NewCaseState extends State<NewCase> {
                                               description.text.trim(),
                                           "uid": g.user.uid,
                                           "dateTime": DateTime.now(),
+                                          "caseBudget":
+                                              int.parse(budget.text.trim()),
+                                          "caseCategory": cat,
                                         }))
                                             .then((value) {
                                           if (value is String) {

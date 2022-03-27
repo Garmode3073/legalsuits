@@ -15,12 +15,12 @@ class FullCase extends StatefulWidget {
 }
 
 class _FullCaseState extends State<FullCase> {
-  List<Attorney> attintrested;
+  var attintrested;
 
   getdata() async {
     attintrested =
         await DBServices().getinterestedatts(widget.caseModel.caseid);
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   @override
@@ -120,6 +120,28 @@ class _FullCaseState extends State<FullCase> {
                   ],
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+                child: Row(
+                  children: [
+                    Text(
+                      "Budget: ₹ ${widget.caseModel.caseBudget}",
+                      style: casesubject,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
+                child: Row(
+                  children: [
+                    Text(
+                      "Category: ${widget.caseModel.caseCategory}",
+                      style: casesubject,
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(
                 height: g.height * 0.048,
               ),
@@ -141,35 +163,44 @@ ${widget.caseModel.caseDescription}
               SizedBox(
                 height: g.height * 0.008,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: g.width * 0.045),
-                child: Row(
-                  children: [
-                    Text(
-                      "Attorney Interested",
-                      style: casetitle,
-                    ),
-                  ],
-                ),
-              ),
+              g.user.type == "client"
+                  ? Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: g.width * 0.045),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Attorney Interested",
+                            style: casetitle,
+                          ),
+                        ],
+                      ),
+                    )
+                  : SizedBox(),
               //interested attorneys
             ],
           ),
-          Expanded(
-            child: attintrested == null
-                ? LoadingPage()
-                : attintrested.isEmpty
-                    ? Center(
-                        child: Text("No Data"),
-                      )
-                    : ListView(
-                        children: List.generate(
-                            attintrested.length,
-                            (i) => AttorneyCard(
-                                  attorney: attintrested[i],
-                                )),
-                      ),
-          ),
+          g.user.type == "client"
+              ? Expanded(
+                  child: attintrested == null
+                      ? LoadingPage()
+                      : attintrested is String
+                          ? Center(
+                              child: Text("No Attorney Interested Yet"),
+                            )
+                          : attintrested.isEmpty
+                              ? Center(
+                                  child: Text("No Data"),
+                                )
+                              : ListView(
+                                  children: List.generate(
+                                      attintrested.length,
+                                      (i) => AttorneyCard(
+                                            attorney: attintrested[i],
+                                          )),
+                                ),
+                )
+              : SizedBox(),
         ],
       ),
     );

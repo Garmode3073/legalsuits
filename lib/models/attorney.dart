@@ -9,6 +9,7 @@ class Attorney {
   String casePortfolio;
   bool llb;
   bool llm;
+  String bio;
 
   Attorney.fromMap(Map map) {
     this.uid = map["uid"];
@@ -19,6 +20,7 @@ class Attorney {
     this.ratePh = map["ratePh"];
     this.llb = map["llb"];
     this.llm = map["llm"];
+    this.bio = map["bio"];
   }
 
   Map<String, dynamic> tomap() {
@@ -31,6 +33,7 @@ class Attorney {
       "ratePh": this.ratePh,
       "llb": this.llb,
       "llm": this.llm,
+      "bio": this.bio,
     };
     return map;
   }

@@ -52,7 +52,8 @@ class _CaseCardState extends State<CaseCard> {
                     child: FullCase(
                       caseModel: widget.casemode,
                     ),
-                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 500),
+                    type: PageTransitionType.rightToLeft,
                   ),
                 );
               },
@@ -94,8 +95,11 @@ class _CaseCardState extends State<CaseCard> {
                             Navigator.push(
                               context,
                               PageTransition(
-                                child: FullCase(),
-                                type: PageTransitionType.fade,
+                                child: FullCase(
+                                  caseModel: widget.casemode,
+                                ),
+                                duration: Duration(milliseconds: 500),
+                                type: PageTransitionType.rightToLeft,
                               ),
                             );
                           },
@@ -158,7 +162,8 @@ class _CaseCard2State extends State<CaseCard2> {
                     child: FullCase(
                       caseModel: widget.caseModel,
                     ),
-                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 500),
+                    type: PageTransitionType.rightToLeft,
                   ),
                 );
               },
@@ -222,7 +227,8 @@ class _CaseCard2State extends State<CaseCard2> {
                                 child: FullCase(
                                   caseModel: widget.caseModel,
                                 ),
-                                type: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 500),
+                                type: PageTransitionType.rightToLeft,
                               ),
                             );
                           },
@@ -285,7 +291,8 @@ class _ContactCardState extends State<ContactCard> {
                     child: ContactedCase(
                       contact: widget.contact,
                     ),
-                    type: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 500),
+                    type: PageTransitionType.rightToLeft,
                   ),
                 );
               },
@@ -328,7 +335,8 @@ class _ContactCardState extends State<ContactCard> {
                               context,
                               PageTransition(
                                 child: FullCase(),
-                                type: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 500),
+                                type: PageTransitionType.rightToLeft,
                               ),
                             );
                           },
@@ -416,7 +424,8 @@ class _AttorneyCardState extends State<AttorneyCard> {
                 child: AttorneyInfo(
                   attorney: widget.attorney,
                 ),
-                type: PageTransitionType.fade,
+                duration: Duration(milliseconds: 500),
+                type: PageTransitionType.rightToLeft,
               ),
             );
           },

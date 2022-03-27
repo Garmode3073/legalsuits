@@ -5,6 +5,8 @@ class CaseModel {
   String caseDescription;
   String uid;
   DateTime dateTime;
+  int caseBudget;
+  String caseCategory;
 
   CaseModel.fromMap(Map map) {
     this.caseid = map["caseId"];
@@ -15,6 +17,8 @@ class CaseModel {
     this.dateTime = map["dateTime"] is DateTime
         ? map["dateTime"]
         : map["dateTime"].toDate();
+    this.caseBudget = map["caseBudget"];
+    this.caseCategory = map["caseCategory"];
   }
 
   Map<String, dynamic> tomap() {
@@ -24,7 +28,9 @@ class CaseModel {
       "caseSubject": this.caseSubject,
       "caseDescription": this.caseDescription,
       "uid": this.uid,
-      "dateTime": this.dateTime
+      "dateTime": this.dateTime,
+      "caseBudget": this.caseBudget,
+      "caseCategory": this.caseCategory,
     };
     return map;
   }

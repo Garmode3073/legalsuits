@@ -96,6 +96,10 @@ class _SearchFieldState extends State<SearchField> {
         borderRadius: BorderRadius.circular(18),
         color: Colors.transparent,
         child: TextField(
+          textInputAction: TextInputAction.search,
+          onSubmitted: (str) {
+            widget.onPressed();
+          },
           controller: widget.ctrl,
           decoration: InputDecoration(
               filled: true,

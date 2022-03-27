@@ -29,6 +29,7 @@ class _MyProfileAttorneyState extends State<MyProfileAttorney> {
   TextEditingController clirate =
       TextEditingController(text: g.attorney.ratePh.toString());
   TextEditingController cliemail = TextEditingController(text: g.user.email);
+  TextEditingController clibio = TextEditingController(text: g.attorney.bio);
   final _key = GlobalKey<FormState>();
   bool isload = false;
 
@@ -358,6 +359,25 @@ class _MyProfileAttorneyState extends State<MyProfileAttorney> {
                       ),
                     ),
                     SizedBox(
+                      height: g.height * 0.03,
+                    ),
+                    //bio
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: g.width * 0.0966),
+                      child: AddNewFormField(
+                        lines: 5,
+                        ctrl: clibio,
+                        hintText: "Bio",
+                        validate: (String bio) {
+                          if (bio.trim().isEmpty) {
+                            return "Bio cannot be empty";
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(
                       height: g.height * 0.08,
                     ),
                     // add case pricesheet and portfolio
@@ -456,6 +476,9 @@ class _MyProfileAttorneyState extends State<MyProfileAttorney> {
                         RawMaterialButton(
                           onPressed: () async {
                             if (_key.currentState.validate()) {
+                              setState(() {
+                                isload = true;
+                              });
                               g.attorney.category = cat;
                               g.attorney.llb = llb;
                               g.attorney.llm = llm;
@@ -463,6 +486,7 @@ class _MyProfileAttorneyState extends State<MyProfileAttorney> {
                               g.attorney.ratePh =
                                   int.parse(clirate.text.trim());
                               g.attorney.username = cliusername.text.trim();
+                              g.attorney.bio = clibio.text.trim();
                               setState(() {
                                 DBServices()
                                     .updateattorney(g.attorney)
@@ -473,8 +497,14 @@ class _MyProfileAttorneyState extends State<MyProfileAttorney> {
                                         content: Text(value),
                                       ),
                                     );
+                                    setState(() {
+                                      isload = false;
+                                    });
                                     Navigator.pop(context);
                                   } else {
+                                    setState(() {
+                                      isload = false;
+                                    });
                                     Navigator.pop(context);
                                   }
                                 });

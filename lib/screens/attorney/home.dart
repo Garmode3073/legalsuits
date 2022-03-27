@@ -58,7 +58,7 @@ class _AttorneyHomeState extends State<AttorneyHome> {
                     top: g.height * 0.0492,
                     right: g.width * 0.058,
                     left: g.width * 0.058,
-                    bottom: g.height * 0.1092,
+                    bottom: g.height * 0.0592,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,8 +106,10 @@ class _AttorneyHomeState extends State<AttorneyHome> {
                 Navigator.push(
                   context,
                   PageTransition(
-                      child: MyProfileAttorney(),
-                      type: PageTransitionType.fade),
+                    child: MyProfileAttorney(),
+                    duration: Duration(milliseconds: 500),
+                    type: PageTransitionType.rightToLeft,
+                  ),
                 );
               },
               child: Container(

@@ -29,10 +29,12 @@ class _AllAttorneysState extends State<AllAttorneys> {
 
   getdata(filter) async {
     listatts = await DBServices().getallattorneys(filter);
+    setState(() {});
   }
 
   getdata2(category, filter) async {
     listatts = await DBServices().getattorneyscat(category, filter);
+    setState(() {});
   }
 
   @override
@@ -40,6 +42,7 @@ class _AllAttorneysState extends State<AllAttorneys> {
     setState(() {
       getdata("");
     });
+    setState(() {});
     super.initState();
   }
 
@@ -91,7 +94,8 @@ class _AllAttorneysState extends State<AllAttorneys> {
                                 context,
                                 PageTransition(
                                   child: MainPage(child: ClientHome()),
-                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 500),
+                                  type: PageTransitionType.rightToLeft,
                                 ),
                               );
                       },
