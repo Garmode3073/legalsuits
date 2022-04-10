@@ -175,8 +175,13 @@ class _SignupPageState extends State<SignupPage> {
                                     validate: (String uname) {
                                       if (uname.trim().isEmpty) {
                                         return "Username cannot be empty";
+                                      } else if (uname.trim().length >= 16) {
+                                        return "Username cannot be more than 16 characters";
+                                      } else if (!isAlpha(uname.trim())) {
+                                        return "Username can only contain letters";
+                                      } else {
+                                        return null;
                                       }
-                                      return null;
                                     },
                                   ),
                                   SizedBox(

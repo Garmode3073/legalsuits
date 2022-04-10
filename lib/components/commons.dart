@@ -26,7 +26,7 @@ class TitleText extends StatelessWidget {
 //martels
 TextStyle caseSubtitle = GoogleFonts.martel(
   fontWeight: FontWeight.w400,
-  fontSize: 10,
+  fontSize: 13,
   color: g.blackfont2,
 );
 

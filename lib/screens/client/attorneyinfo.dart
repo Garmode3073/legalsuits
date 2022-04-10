@@ -111,8 +111,8 @@ class _AttorneyInfoState extends State<AttorneyInfo> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Container(
-                  height: g.height * 0.1,
-                  width: g.height * 0.1,
+                  height: g.height * 0.125,
+                  width: g.height * 0.125,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
